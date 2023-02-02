@@ -1,14 +1,34 @@
 const express = require("express");
-const connect = require("./config/db");
+const {connect} = require("./config/db");
 
-app = express();
+const {UserRouter} = require("./Routes/user.routes")
 
-app.use(express.json());
+const app = express();
 
 const port = 8000;
 
-app.listen(port, async () => {
+app.use(express.json());
 
-    await connect;
+app.use("/users", UserRouter)
+
+// app.get("/", (req, res) => {
+//     res.send("Welcome")
+// })
+
+app.get("/", async(req, res) => {
+
+    await res.send("Welcome");
+})
+
+
+
+app.listen(port, async () => {
+    try {
+        await connect
+        console.log("Connected to DB Successfully")
+        
+    } catch (err) {
+        console.log("error while connecting to db", err);
+    }
     console.log(`Listen on port ${port}`);
 })
