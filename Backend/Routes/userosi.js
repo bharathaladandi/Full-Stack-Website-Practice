@@ -70,7 +70,7 @@ UserRouter.post("/login" , async (req, res) => {
                     res.send({"msg": "Login successfully", "token": token})
                 }
                 else {
-                    res.send("Login failed")
+                    res.send("Login failed");
                 }
             })
         }

@@ -15,11 +15,15 @@ app.use("/users", UserRouter)
 //     res.send("Welcome")
 // })
 
-app.get("/", async(req, res) => {
 
+// app.get("/get", (req, res) => {
+//     res.send("Hello")
+// })
+
+app.get("/", async(req, res) => {
+    
     await res.send("Welcome");
 })
-
 
 
 app.listen(port, async () => {
