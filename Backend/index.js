@@ -16,10 +16,6 @@ app.use("/users", UserRouter)
 // })
 
 
-// app.get("/get", (req, res) => {
-//     res.send("Hello")
-// })
-
 app.get("/", async(req, res) => {
     
     await res.send("Welcome");
