@@ -11,17 +11,18 @@ app.use(express.json());
 app.use(authenticate)
 app.use("/users", UserRouter)
 
-// app.get("/", (req, res) => {
-//     res.send("Welcome")
-// })
 
 
+
+// GET Method
 app.get("/", async(req, res) => {
     
     await res.send("Welcome");
 })
 
 
+
+// Connecting to DB
 app.listen(port, async () => {
     try {
         await connect

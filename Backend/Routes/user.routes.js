@@ -73,28 +73,26 @@ UserRouter.post("/create" , async (req, res) => {
 
 
 
+// POST Movies
+UserRouter.post("/", async (req, res) => {
 
-// UserRouter.post("/", async (req, res) => {
+    const movie = await new User(req.body);
+    movie.save((err, success) => {
 
-//     const movie = await new User(req.body);
-//     movie.save((err, success) => {
+        if (err) {
+            return res.status(501).send({ message: "Something went wrong while saving to db" });
 
-//         if (err) {
-//             return res.status(501).send({ message: "Something went wrong while saving to db" });
-
-//         }
+        }
 
 
-//         res.status(201).send(success);
+        res.status(201).send(success);
 
-//     })
-// });
+    })
+});
 
 
 
 // DELETE Method
-
-
 UserRouter.delete("/:id", async (req, res) => {
 
     try {
