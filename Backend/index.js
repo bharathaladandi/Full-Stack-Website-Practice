@@ -15,10 +15,10 @@ app.use("/users", UserRouter)
 
 
 // GET Method
-app.get("/", async(req, res) => {
+// app.get("/", async(req, res) => {
     
-    await res.send("Welcome");
-})
+//     await res.send("Welcome");
+// })
 
 
 
