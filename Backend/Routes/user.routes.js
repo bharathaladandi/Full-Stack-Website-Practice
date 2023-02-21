@@ -1,121 +1,77 @@
-// const { Router } = require("express");
+const { Router } = require("express");
 
-// const UserRouter = Router();
+const UserRouter = Router();
 
-// const { UserModel } = require("../models/userSchma")
+const { UserModel } = require("../models/userSchma")
 
-// // GET Method
+// GET Method
+UserRouter.get("/", async(req,res) => {
 
-// UserRouter.get("/", async (req, res) => {
+   res.send("welcome");
 
-//     try {
+})
 
-//         const getUser = await UserModel.Find();
+UserRouter.post("/signup", async (req, res) => {
 
-//         res.send(getUser);
+    console.log(req.body);
+
+    const {email, password } = req.body;
+
+    const userPresent = await UserModel.findOne({email});
+
+    if(userPresent?.email){
+
+        return res.status(404),send("User Already Exits, Try another email address");
+
+    }
+    else{
+        try {
+            bcrypt.hash(password, 4, async function (err, hash){
+
+                const user = new UserModel({email, password:hash})
+
+                await user.save();
+
+                res.send("sign up sucessfull")
+            })
+        } catch (error) {
+            
+            console.log(error.message);
+        }
+    }
+})
+
+
+UserRouter.post("/login", async(req, res) => {
+
+    const {email, password} = req. body;
+
+    try {
+
+        const user = await UserModel.find({email})
+
+        if(user.length > 0){
+            const hashed_password = user[0].password;
+
+            bcrypt.compare(password, hashed_password, function(err, result) {
+
+                if(result){
+
+                    const token = jwt.sign({"userID": user[0]._id}, 'hush');
+
+                    res.send({'msg': 'Login Successfull', 'token':token});
+                }
+                else{
+                    res.send(401).send("Login Failed");
+                }
+            })
+        }
+        else{
+            res.status(404).send(`User with email ${email} not found`)
+        }
         
-//     } catch (error) {
-        
-//         console.log(error);
-
-//         res.status(400).send(error.message);
-//     }
-// });
-
-
-
-
-
-// // GET  By Id Request
-
-// UserRouter.get("/:id", async (req, res) => {
-
-//     try {
-
-//         let id= req.params._id;
-
-//         let SpecificUser = await UserModel.findById(id);
-
-//         if(!SpecificUser){
-
-//             res.send("User Not Found")
-//         }
-//         else{
-
-//             res.send(SpecificUser);
-//         }
-        
-//     } catch (error) {
-        
-//         console.log(error);
-
-//         res.status(400).send(error.message);
-//     }
-// });
-
-
-
-// // POST Method
-// UserRouter.post("/create" , async (req, res) => {
-
-//     const payload = req.body
-  
-//     try{
-//         const userSpc = new UserModel(payload)
-//         await userSpc.save()
-//         res.send({"msg" : "Note created successfully"})
-//     }
-//     catch(err){
-//         console.log(err)
-//         res.send({"err" : "Something went wrong"})
-//     }
-// })
-
-
-
-// // POST Movies
-// UserRouter.post("/", async (req, res) => {
-
-//     const movie = await new User(req.body);
-//     movie.save((err, success) => {
-
-//         if (err) {
-//             return res.status(501).send({ message: "Something went wrong while saving to db" });
-
-//         }
-
-
-//         res.status(201).send(success);
-
-//     })
-// });
-
-
-
-// // DELETE Method
-// UserRouter.delete("/:id", async (req, res) => {
-
-//     try {
-
-//         let id= req.params._id;
-
-//         let SpecificUser = await UserModel.findByIdAndDelete(id);
-
-//         if(SpecificUser){
-
-//             res.send("User Delete Sucessfully")
-//         }
-//         else{
-
-//             res.send("User Not Found")
-//         }
-        
-//     } catch (error) {
-        
-//         console.log(error);
-
-//         res.status(404).send(error.message);
-//     }
-// });
-
-// module.exports =  {UserRouter} 
+    } catch (error) {
+        console.log(error.message);
+    }
+})
+module.exports =  {UserRouter} 

@@ -1,6 +1,4 @@
-const express = require("express");
-
-const UserModel = require("../models/userSchma");
+const jwt = require("jsonwebtoken");
 
 const authenticate = async (req, res, next) => {
 
