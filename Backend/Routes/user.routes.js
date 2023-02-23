@@ -1,7 +1,7 @@
 const { Router } = require("express");
-
+const jwt = require("jsonwebtoken");
 const UserRouter = Router();
-
+const bcrypt = require("bcrypt");
 const { UserModel } = require("../models/userSchma")
 
 // GET Method
@@ -15,7 +15,7 @@ UserRouter.post("/signup", async (req, res) => {
 
     console.log(req.body);
 
-    const {email, password } = req.body;
+    const payload = req.body;
 
     const userPresent = await UserModel.findOne({email});
 
@@ -28,7 +28,7 @@ UserRouter.post("/signup", async (req, res) => {
         try {
             bcrypt.hash(password, 4, async function (err, hash){
 
-                const user = new UserModel({email, password:hash})
+                const user = new UserModel(payload)
 
                 await user.save();
 
