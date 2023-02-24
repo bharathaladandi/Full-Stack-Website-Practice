@@ -1,5 +1,6 @@
 const express = require("express");
 const connect = require("./config/db");
+const { Usermodel } = require("./models/userModel");
 
 
 
@@ -19,47 +20,35 @@ app.use("/user", UserRouter)
 app.use("/product", ProductRouter)
 
 
+app.get("/", (req,res) => {
+
+    res.send("Welcome");
+})
 
 
-// GET Method
-// app.get("/", async(req, res) => {
+app.post("/signup", async(req, res) => {
+
+    try{
+        const data = req.body;
+
+        const user = Usermodel(data);
     
-//     await res.send("Welcome");
-// })
+        await user.save();
 
+        res.send("signup successfull")
+    }
+    catch(e){
+        console.log(e.message);
+        res.send("User Already exist, Please try another email address")
+    }
 
+})
 
-// app.post("/signup", async (req, res) => {
+app.post("/login", (req, res) => {
 
-//     console.log(req.body);
+    req.send("work in progess")
 
-//     const payload = req.body;
-
-//     // const userPresent = await UserModel.findOne({email});
-
-//     // if(userPresent?.email){
-
-//     //     return res.status(404),send("User Already Exits, Try another email address");
-
-//     // }
-//     // else{
-//         try {
-//             // bcrypt.hash(password, 4, async function (err, hash){
-
-//                 const user = new UserModel(payload)
-
-//                 await user.save();
-
-//                 res.send("sign up sucessfull")
-//             // })
-//         } catch (error) {
-            
-//             console.log(error.message);
-//         }
-//     // }
-// })
-
-
+})
 // Connecting to DB
 app.listen(port, async () => {
     try {
