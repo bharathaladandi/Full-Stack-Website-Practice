@@ -1,10 +1,11 @@
 const express = require("express");
 const connect = require("./config/db");
 
-const { UserModel } = require("./models/userSchma")
+
 
 // const {UserRouter} = require("./Routes/user.routes")
-const { ProductRouter } = require("./Routes/product.routes")
+const { ProductRouter } = require("./Routes/product.routes");
+const { UserRouter } = require("./Routes/user.routes");
 // const { authenticate } = require("./middlewares/authentication")
 const app = express();
 
@@ -13,6 +14,8 @@ const port = 8000;
 app.use(express.json());
 // app.use(authenticate)
 // app.use("/users", UserRouter)
+
+app.use("/user", UserRouter)
 app.use("/product", ProductRouter)
 
 
