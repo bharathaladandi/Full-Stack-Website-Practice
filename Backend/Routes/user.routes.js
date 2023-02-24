@@ -98,8 +98,8 @@ UserRouter.post("/login", async (req, res) => {
         const user = await Usermodel.find({ email, password })
 
         if (user.length > 0) {
-
-            res.send("Login Successfull")
+            var token = jwt.sign({ 'foo': 'bar' }, 'fullstack');
+            res.send({"msg":"Login Successfull", "token": token})
             return
         }
         else {
@@ -116,6 +116,54 @@ UserRouter.post("/login", async (req, res) => {
     }
     res.send("work in progess")
 
+})
+
+
+
+
+
+//About Data
+UserRouter.get("/about", (req, res) => {
+    res.send("About Data");
+})
+
+UserRouter.get("/weather", (req, res) => {
+
+    let token = req.headers.authorization;
+
+    
+    var decoded = jwt.verify(token, 'fullstack', (err, decoded) => {
+
+        if(err){
+            console.log(err);
+            res.send("Please Login Again")
+        }
+        else if(decoded){
+            console.log(decoded);
+            res.send("Weather Data............")
+        }
+    });
+})
+
+UserRouter.get("/purchase", (req, res) => {
+
+    const token = req.headers.authorization?.split(" ")[1]
+    
+    var decoded = jwt.verify(token, 'fullstack', (err, decoded) => {
+
+        if(err){
+            console.log(err);
+            res.send("Please Login Again")
+        }
+        else if(decoded){
+            console.log(decoded);
+            res.send("Purchase Data............")
+        }
+    });
+})
+
+UserRouter.get("/contact", (req, res) => {
+    res.send("Contact Data");
 })
 
 module.exports =  {UserRouter} 
