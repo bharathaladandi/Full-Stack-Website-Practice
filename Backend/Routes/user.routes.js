@@ -69,6 +69,14 @@ UserRouter.get("/", (req, res) => {
 })
 
 
+
+
+
+
+
+
+
+
 UserRouter.post("/signup", async (req, res) => {
 
     try {
@@ -120,6 +128,17 @@ UserRouter.post("/login", async (req, res) => {
 
 
 
+// UserRouter.get("/product", (req, res){
+
+//     const user = req.body;
+
+//     const product = Usermodel.find(user)
+//     res.send(product)
+// })
+
+
+
+
 
 
 //About Data
@@ -127,10 +146,11 @@ UserRouter.get("/about", (req, res) => {
     res.send("About Data");
 })
 
+
+//Wether Data
 UserRouter.get("/weather", (req, res) => {
 
-    let token = req.headers.authorization;
-
+    const token = req.headers.authorization?.split(" ")[1]
     
     var decoded = jwt.verify(token, 'fullstack', (err, decoded) => {
 
@@ -145,6 +165,9 @@ UserRouter.get("/weather", (req, res) => {
     });
 })
 
+
+
+// Purchase Data
 UserRouter.get("/purchase", (req, res) => {
 
     const token = req.headers.authorization?.split(" ")[1]
@@ -162,6 +185,9 @@ UserRouter.get("/purchase", (req, res) => {
     });
 })
 
+
+
+// Contact Data
 UserRouter.get("/contact", (req, res) => {
     res.send("Contact Data");
 })

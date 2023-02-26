@@ -23,15 +23,6 @@ app.use("/users", UserRouter)
 
 
 
-
-
-
-
-
-
-
-
-
 // Connecting to DB
 app.listen(port, async () => {
     try {

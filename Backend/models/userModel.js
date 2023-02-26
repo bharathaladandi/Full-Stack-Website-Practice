@@ -8,12 +8,11 @@ const userSchema = new mongoose.Schema(
         password: { type: String, required: true },
         age:{type:Number},
         role: { type: String, default: "user" },
+
     },
 
     {
         timestamps: true,
     });
 
-const Usermodel = mongoose.model("user", userSchema)
-
-module.exports = { Usermodel }  
+const Usermodel = mongoose.model("user", userSchema)    
