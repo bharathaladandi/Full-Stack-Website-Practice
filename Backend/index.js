@@ -23,6 +23,8 @@ app.use("/users", UserRouter)
 
 
 
+
+
 // Connecting to DB
 app.listen(port, async () => {
     try {
@@ -34,3 +36,13 @@ app.listen(port, async () => {
     }
     console.log(`Listen on port ${port}`);
 })
+
+
+
+
+const express = require("express");
+
+const cors = require("cors");
+
+
+

@@ -2,7 +2,7 @@ const { Router } = require("express");
 const jwt = require("jsonwebtoken");
 const UserRouter = Router();
 const bcrypt = require("bcrypt");
-const { Usermodel } = require("../models/userModel")
+const Usermodel = require("../models/userModel");
 
 // GET Method
 // UserRouter.get("/", async(req,res) => {
@@ -79,10 +79,10 @@ UserRouter.get("/", (req, res) => {
 
 UserRouter.post("/signup", async (req, res) => {
 
-    try {
-        const data = req.body;
+    const data = req.body;
 
-        const user = Usermodel(data);
+    try {
+        const user = new Usermodel(data);
 
         await user.save();
 
@@ -94,10 +94,24 @@ UserRouter.post("/signup", async (req, res) => {
     }
 
 })
+ 
+UserRouter.post("/signup", async(req, res) => {
+    const {email, password} = req.body;
 
+   try {
+    
+    const user = await Usermodel.find({email});
 
+    if(user.length > 0){
 
+        const token = jwt
 
+        res.send({"msg":"user created", "token": token})
+    }
+   } catch (error) {
+    console.log(error);
+   }
+})
 UserRouter.post("/login", async (req, res) => {
 
     const { email, password } = req.body;
@@ -108,12 +122,12 @@ UserRouter.post("/login", async (req, res) => {
         if (user.length > 0) {
             var token = jwt.sign({ 'foo': 'bar' }, 'fullstack');
             res.send({"msg":"Login Successfull", "token": token})
-            return
+            
         }
         else {
 
             res.send("Login Failed ")
-            return
+            
         }
         // console.log(user);
 
@@ -135,9 +149,6 @@ UserRouter.post("/login", async (req, res) => {
 //     const product = Usermodel.find(user)
 //     res.send(product)
 // })
-
-
-
 
 
 
