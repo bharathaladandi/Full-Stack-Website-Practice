@@ -1,7 +1,8 @@
 const express = require("express");
 const connect = require("./config/db");
 const { UserRouter } = require("./Routes/user.routes");
-
+ const ProductRouter = require("./Routes/product.routes");
+ const CartRouter = require("./Routes/Cart.rotes");
 
 
 // const {UserRouter} = require("./Routes/user.routes")
@@ -9,15 +10,18 @@ const { UserRouter } = require("./Routes/user.routes");
 // const { UserRouter } = require("./Routes/user.routes");
 // const { authenticate } = require("./middlewares/authentication")
 const app = express();
+app.use(express.json());
+app.use(cors());
+
 
 const port = 8000;
 
-app.use(express.json());
-// app.use(authenticate)
-// app.use("/users", UserRouter)
 
-app.use("/users", UserRouter)
-// app.use("/product", ProductRouter)
+app.use("/users", UserRouter);
+app.use("/product", ProductRouter);
+app.use("/cart", CartRouter);
+
+
 
 
 
