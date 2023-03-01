@@ -1,8 +1,5 @@
 const express = require("express");
-
 const Cart = require("../models/Cart.module");
-
-
 const app = express.Router();
 
 

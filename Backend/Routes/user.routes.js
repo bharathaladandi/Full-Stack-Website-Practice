@@ -95,23 +95,10 @@ UserRouter.post("/signup", async (req, res) => {
 
 })
  
-UserRouter.post("/signup", async(req, res) => {
-    const {email, password} = req.body;
 
-   try {
-    
-    const user = await Usermodel.find({email});
 
-    if(user.length > 0){
 
-        const token = jwt
 
-        res.send({"msg":"user created", "token": token})
-    }
-   } catch (error) {
-    console.log(error);
-   }
-})
 UserRouter.post("/login", async (req, res) => {
 
     const { email, password } = req.body;
