@@ -5,16 +5,18 @@ import { Homepage } from '../Components/Homepage'
 import { Login } from '../Components/Login'
 import { Products } from '../Components/Products'
 import { Signup } from '../Components/Signup'
+import { SingleProduct } from '../Components/SingleProduct';
 
 export const AllRoutes = () => {
   return (
     <div>
         <Routes>
             <Route path='/' element={<Homepage />}></Route>
-            <Route path='/product' element={<Products />}></Route>
+            <Route path='/products' element={<Products />}></Route>
             <Route path='/cart' element={<Cart />}></Route>
             <Route path='/signup' element={<Signup />}></Route>
             <Route path='/login' element={<Login />}></Route>
+            <Route path='/products/:product_id' element={<SingleProduct />}></Route>
         </Routes>
     </div>
   )

@@ -37,7 +37,7 @@ export const Products = () => {
 
     getData(`https://blossombackend.onrender.com/products/Sale/asc?page=${page}&limit=${limit}`).then((res) => {
 
-      console.log(res);
+      // console.log(res);
       setData(res);
     })
   }, [page])
@@ -53,17 +53,19 @@ export const Products = () => {
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "repeat(2,1fr)",
+        gridTemplateColumns: "repeat(3,1fr)",
         width: "80%",
         margin: "auto",
-        gap: "20px"
+        gap: "20px",
+        // border: '1px solid red'
       }} >
       {data?.map((item) => (
-
-        <div key={item._id}>
-          <img style={{ alignItems: 'center', height: '100px', width: '130px' }} src={item.image} alt="prof.img" />
+//box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        <div style={{ boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px'}} key={item._id}>
+          <img style={{marginTop:'20px',  alignItems: 'center', height: '100px', width: '130px' }} src={item.image} alt="prof.img" />
           <h6>{item.title}</h6>
           <h5> Price: {item.price}</h5>
+          <Link to={`/products/${item._id}`}>More Details</Link>
         </div>
       ))}
 
