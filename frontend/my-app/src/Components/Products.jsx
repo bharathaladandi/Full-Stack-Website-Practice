@@ -60,12 +60,13 @@ export const Products = () => {
         // border: '1px solid red'
       }} >
       {data?.map((item) => (
-//box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-        <div style={{ boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px'}} key={item._id}>
-          <img style={{marginTop:'20px',  alignItems: 'center', height: '100px', width: '130px' }} src={item.image} alt="prof.img" />
-          <h6>{item.title}</h6>
-          <h5> Price: {item.price}</h5>
-          <Link to={`/products/${item._id}`}>More Details</Link>
+        //box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        <div style={{ boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px' }} key={item._id}>
+          <Link to={`/products/${item._id}`}>
+            <img style={{ marginTop: '20px', alignItems: 'center', height: '100px', width: '130px' }} src={item.image} alt="prof.img" />
+            <h6>{item.title}</h6>
+            <h5> Price: {item.price}</h5>
+          </Link>
         </div>
       ))}
 
