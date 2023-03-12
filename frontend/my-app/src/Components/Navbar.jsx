@@ -62,13 +62,13 @@ export default function Navbar() {
             Logo
           </Text>
 
-          <Flex  display={{ base: 'none', md: 'flex' }} ml={10}>
-          <Stack direction={'row'} spacing={4}>
-            <Link to="/"><h3>Home</h3></Link>
-            <Link to="/products"><h3>Product</h3></Link>
-            <Link to="/cart"><h3>Cart</h3></Link>
-            <Link to="/signup"><h3>Signup</h3></Link>
-            <Link to="/login"><h3>Login</h3></Link>
+          <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
+            <Stack direction={'row'} spacing={4}>
+              <Link to="/"><h3>Home</h3></Link>
+              <Link to="/products"><h3>Product</h3></Link>
+              <Link to="/cart"><h3>Cart</h3></Link>
+              <Link to="/signup"><h3>Signup</h3></Link>
+              <Link to="/login"><h3>Login</h3></Link>
             </Stack>
           </Flex>
         </Flex>
@@ -78,27 +78,30 @@ export default function Navbar() {
           justify={'flex-end'}
           direction={'row'}
           spacing={6}>
-          <Button
-            as={'a'}
-            fontSize={'sm'}
-            fontWeight={400}
-            variant={'link'}
-            href={'#'}>
-            Sign In
-          </Button>
-          <Button
-            as={'a'}
-            display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'sm'}
-            fontWeight={600}
-            color={'white'}
-            bg={'pink.400'}
-            href={'#'}
-            _hover={{
-              bg: 'pink.300',
-            }}>
-            Sign Up
-          </Button>
+          <Link to='/login'>
+            <Button
+              as={'a'}
+              fontSize={'sm'}
+              fontWeight={400}
+              variant={'link'}
+              href={'#'}>
+              Sign In
+            </Button>
+          </Link>
+          <Link to='/signup'>
+            <Button
+              as={'a'}
+              display={{ base: 'none', md: 'inline-flex' }}
+              fontSize={'sm'}
+              fontWeight={600}
+              color={'white'}
+              bg={'pink.400'}
+              _hover={{
+                bg: 'pink.300',
+              }}>
+              Sign Up
+            </Button>
+          </Link>
         </Stack>
       </Flex>
 

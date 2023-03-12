@@ -1,6 +1,27 @@
+import { Box } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
 import { Link, useSearchParams } from "react-router-dom";
+import { ProductCard } from '../Pages/Products/ProductCard';
+import { ProductGrid } from '../Pages/Products/ProductGrid';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const getCurrentPage = (val) => {
@@ -21,6 +42,16 @@ const getData = (url) => {
 
   return fetch(url).then((res) => res.json())
 }
+
+
+
+
+
+
+
+
+
+
 export const Products = () => {
 
   const [data, setData] = useState([]);
@@ -50,27 +81,35 @@ export const Products = () => {
     setSearchParams(paramObj)
   }, [page])
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3,1fr)",
-        width: "80%",
-        margin: "auto",
-        gap: "20px",
-        // border: '1px solid red'
-      }} >
+    <Box
+    maxW="7xl"
+    mx="auto"
+    px={{
+      base: '4',
+      md: '8',
+      lg: '12',
+    }}
+    py={{
+      base: '6',
+      md: '8',
+      lg: '12',
+    }}
+  >
+
+<ProductGrid>
       {data?.map((item) => (
         //box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-        <div style={{ boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px' }} key={item._id}>
-          <Link to={`/products/${item._id}`}>
-            <img style={{ marginTop: '20px', alignItems: 'center', height: '100px', width: '130px' }} src={item.image} alt="prof.img" />
-            <h6>{item.title}</h6>
-            <h5> Price: {item.price}</h5>
-          </Link>
-        </div>
+        // <div style={{ boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px' }} key={item._id}>
+        //   <Link to={`/products/${item._id}`}>
+        //     <img style={{ marginTop: '20px', alignItems: 'center', height: '100px', width: '130px' }} src={item.image} alt="prof.img" />
+        //     <h6>{item.title}</h6>
+        //     <h5> Price: {item.price}</h5>
+        //   </Link>
+        // </div>
+        <ProductCard key={item.id} product={item} />
       ))}
 
-
+</ProductGrid>
 
       <div>
 
@@ -78,7 +117,7 @@ export const Products = () => {
         <button>{page}</button>
         <button onClick={() => setPage(page + 1)}>NEXT</button>
       </div>
-    </div>
+    </Box>
 
   )
 }
