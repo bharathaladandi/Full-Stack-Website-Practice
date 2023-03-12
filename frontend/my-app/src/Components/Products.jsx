@@ -81,7 +81,7 @@ export const Products = () => {
     setSearchParams(paramObj)
   }, [page])
   return (
-    <Box
+    <Box 
     maxW="7xl"
     mx="auto"
     px={{
@@ -106,7 +106,7 @@ export const Products = () => {
         //     <h5> Price: {item.price}</h5>
         //   </Link>
         // </div>
-        <ProductCard key={item.id} product={item} />
+        <ProductCard key={item._id} product={item} />
       ))}
 
 </ProductGrid>
