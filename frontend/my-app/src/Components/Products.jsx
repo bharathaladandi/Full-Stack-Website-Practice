@@ -94,6 +94,7 @@ export const Products = () => {
       md: '8',
       lg: '12',
     }}
+    marginTop='50px'
   >
 
 <ProductGrid>
@@ -106,7 +107,9 @@ export const Products = () => {
         //     <h5> Price: {item.price}</h5>
         //   </Link>
         // </div>
+        <Link to={`/products/${item._id}`}>
         <ProductCard key={item._id} product={item} />
+        </Link>
       ))}
 
 </ProductGrid>

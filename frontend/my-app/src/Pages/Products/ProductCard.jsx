@@ -63,14 +63,14 @@ import { Rating } from './Rating'
         </Stack>
         <Stack align="center">
           <Button colorScheme="blue" width="full">
-            Add to cart
+          Quick shop
           </Button>
           <Link
             textDecoration="underline"
             fontWeight="medium"
             color={useColorModeValue('gray.600', 'gray.400')}
           >
-            Quick shop
+            {/* Quick shop */}
           </Link>
         </Stack>
       </Stack>
