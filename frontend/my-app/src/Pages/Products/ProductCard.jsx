@@ -18,7 +18,7 @@ import { Rating } from './Rating'
   
   export const ProductCard = (props) => {
     const { product, rootProps } = props
-    const { category, image, price, rating } = product
+    const { category, title, image, price, rating } = product
     return (
       <Stack
         spacing={{
@@ -44,13 +44,13 @@ import { Rating } from './Rating'
             position="absolute"
             top="4"
             right="4"
-            aria-label={`Add ${category} to your favourites`}
+            aria-label={`Add ${title} to your favourites`}
           />
         </Box>
         <Stack>
           <Stack spacing="1">
             <Text fontWeight="medium" color={useColorModeValue('gray.700', 'gray.400')}>
-              {category}
+              {title}
             </Text>
             <PriceTag price={price} salePrice={price} currency="USD" />
           </Stack>

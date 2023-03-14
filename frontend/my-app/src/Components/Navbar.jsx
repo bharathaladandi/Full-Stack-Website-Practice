@@ -11,10 +11,6 @@ import {
   Button,
   Stack,
   Collapse,
-  Icon,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
@@ -22,8 +18,6 @@ import {
 import {
   HamburgerIcon,
   CloseIcon,
-  ChevronDownIcon,
-  ChevronRightIcon,
 } from '@chakra-ui/icons';
 
 export default function Navbar() {
@@ -32,8 +26,8 @@ export default function Navbar() {
   return (
     <Box  >
       <Flex position="fixed" top={0} zIndex={5}
-        bg={useColorModeValue('white', 'gray.800')}
-        color={useColorModeValue('gray.600', 'white')}
+        bg={useColorModeValue('gray.600', 'gray.800')}
+        color={useColorModeValue('white', 'white')}
         minH={'60px'}
         py={{ base: 2 }}
         px={{ base: 4 }}
@@ -60,7 +54,7 @@ export default function Navbar() {
           <Text
             textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
             fontFamily={'heading'}
-            color={useColorModeValue('gray.800', 'white')}>
+            color={useColorModeValue('white', 'white')}>
             Logo
           </Text>
 
@@ -86,7 +80,8 @@ export default function Navbar() {
               fontSize={'sm'}
               fontWeight={400}
               variant={'link'}
-              href={'#'}>
+              href={'#'}
+              color={'white'}>
               Sign In
             </Button>
           </Link>
@@ -97,9 +92,9 @@ export default function Navbar() {
               fontSize={'sm'}
               fontWeight={600}
               color={'white'}
-              bg={'pink.400'}
+              bg={'teal.400'}
               _hover={{
-                bg: 'pink.300',
+                bg: 'teal.300',
               }}>
               Sign Up
             </Button>

@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Button, Stack, Skeleton, Spinner, Tooltip } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
 import { Link, useSearchParams } from "react-router-dom";
@@ -56,6 +56,8 @@ export const Products = () => {
 
   const [data, setData] = useState([]);
 
+  const [isLoaded, setIsLoaded] = React.useState(false)
+
   let [searchParams, setSearchParams] = useSearchParams();
 
   const [page, setPage] = useState(
@@ -65,11 +67,14 @@ export const Products = () => {
   const limit = 5;
 
   useEffect(() => {
+    setIsLoaded(true);
 
     getData(`https://blossombackend.onrender.com/products/Sale/asc?page=${page}&limit=${limit}`).then((res) => {
 
       // console.log(res);
+
       setData(res);
+      setIsLoaded(false);
     })
   }, [page])
 
@@ -79,48 +84,75 @@ export const Products = () => {
     let paramObj = { page };
 
     setSearchParams(paramObj)
-  }, [page])
+  }, [page, setSearchParams])
   return (
-    <Box 
-    maxW="7xl"
-    mx="auto"
-    px={{
-      base: '4',
-      md: '8',
-      lg: '12',
-    }}
-    py={{
-      base: '6',
-      md: '8',
-      lg: '12',
-    }}
-    marginTop='50px'
-  >
+    <div key={Date.now()}>
+      {isLoaded ? (
+        <Stack padding={4} spacing={1} marginTop={250} alignItems={'center'}
+        justifyContent={'center'}
+        display={'flex'} >
+          <Spinner
+            thickness='4px'
+            speed='0.65s'
+            emptyColor='gray.200'
+            color='blue.500'
+            size='xl'
+            alignItems={'center'}
+            justifyContent={'center'}
+            // marginTop={50}
+            display={'flex'}
+          />
+        </Stack>
+      ) : (
+        <Box
+          maxW="7xl"
+          mx="auto"
+          px={{
+            base: '4',
+            md: '8',
+            lg: '12',
+          }}
+          py={{
+            base: '6',
+            md: '8',
+            lg: '12',
+          }}
+          marginTop='50px'
+        >
 
-<ProductGrid>
-      {data?.map((item) => (
-        //box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-        // <div style={{ boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px' }} key={item._id}>
-        //   <Link to={`/products/${item._id}`}>
-        //     <img style={{ marginTop: '20px', alignItems: 'center', height: '100px', width: '130px' }} src={item.image} alt="prof.img" />
-        //     <h6>{item.title}</h6>
-        //     <h5> Price: {item.price}</h5>
-        //   </Link>
-        // </div>
-        <Link to={`/products/${item._id}`}>
-        <ProductCard key={item._id} product={item} />
-        </Link>
-      ))}
+          <ProductGrid>
+            {data?.map((item) => (
+              //box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+              // <div style={{ boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px' }} key={item._id}>
+              //   <Link to={`/products/${item._id}`}>
+              //     <img style={{ marginTop: '20px', alignItems: 'center', height: '100px', width: '130px' }} src={item.image} alt="prof.img" />
+              //     <h6>{item.title}</h6>
+              //     <h5> Price: {item.price}</h5>
+              //   </Link>
+              // </div>
+              <Link key={item._id}   to={`/products/${item._id}`}>
+                <ProductCard key={item._id} product={item} />
+              </Link>
+            ))}
+          </ProductGrid>
 
-</ProductGrid>
 
-      <div>
+          <ProductGrid>
+            <div style={{ gap: '30px', margin: 'auto', marginTop: '50px' }}>
 
-        <button disabled={page === 1} onClick={() => setPage(page - 1)}>PREV</button>
-        <button>{page}</button>
-        <button onClick={() => setPage(page + 1)}>NEXT</button>
-      </div>
-    </Box>
+            <Tooltip label={page === 1}>
+  {/* <Button disabled>Submit</Button> */}
 
+              <Button style={{ marginRight: '20px' }} disabled={page===1} onClick={() => setPage(page - 1)}>PREV</Button>
+              </Tooltip>
+              <button style={{ margin: 'auto' }}>{page}</button>
+              <Button style={{ marginLeft: '20px' }} onClick={() => setPage(page + 1)}>NEXT</Button>
+            </div>
+
+
+          </ProductGrid>
+        </Box>
+      )}
+    </div>
   )
 }
