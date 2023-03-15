@@ -11,6 +11,7 @@ export const ProductGrid = (props) => {
       xl: Math.min(4, count),
     }
   }, [props.children])
+  
   return (
     <SimpleGrid
       columns={columns}
@@ -26,3 +27,4 @@ export const ProductGrid = (props) => {
     />
   )
 }
+

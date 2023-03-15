@@ -32,7 +32,8 @@ export const SingleProduct = () => {
             
             width: "80%",
             margin: "auto",
-            gap: "20px"
+            gap: "20px",
+            boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px'
           }}>
             <img style={{ alignItems: 'center', height: '100px', width: '130px' }} src={productDetails.image} alt="alt-prof" />
             <h5>

@@ -99,7 +99,6 @@ export const Products = () => {
             size='xl'
             alignItems={'center'}
             justifyContent={'center'}
-            // marginTop={50}
             display={'flex'}
           />
         </Stack>
