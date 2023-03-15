@@ -1,4 +1,4 @@
-import { Box, Button, Stack, Skeleton, Spinner, Tooltip } from '@chakra-ui/react';
+import { Box, Button, Stack, Spinner, Tooltip } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
 import { Link, useSearchParams } from "react-router-dom";
@@ -8,22 +8,7 @@ import { ProductGrid } from '../Pages/Products/ProductGrid';
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Page Logic
 const getCurrentPage = (val) => {
 
   val = Number(val);
@@ -31,13 +16,15 @@ const getCurrentPage = (val) => {
   if (typeof val === "number" && val <= 0) {
     val = 1;
   }
-
   if (!val) {
     val = 1
   }
 
   return val
 }
+
+
+//Fetching Data
 const getData = (url) => {
 
   return fetch(url).then((res) => res.json())
@@ -45,18 +32,11 @@ const getData = (url) => {
 
 
 
-
-
-
-
-
-
-
 export const Products = () => {
 
   const [data, setData] = useState([]);
 
-  const [isLoaded, setIsLoaded] = React.useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   let [searchParams, setSearchParams] = useSearchParams();
 
@@ -66,6 +46,7 @@ export const Products = () => {
 
   const limit = 5;
 
+  // get data from here
   useEffect(() => {
     setIsLoaded(true);
 
@@ -79,14 +60,20 @@ export const Products = () => {
   }, [page])
 
 
+  // pagination Logic (If pages no. changes our param also change)
   useEffect(() => {
 
     let paramObj = { page };
 
     setSearchParams(paramObj)
   }, [page, setSearchParams])
+
+
+
   return (
     <div key={Date.now()}>
+
+      {/* If lodding is true then show loding indicator  */}
       {isLoaded ? (
         <Stack padding={4} spacing={1} marginTop={250} alignItems={'center'}
         justifyContent={'center'}
@@ -103,6 +90,7 @@ export const Products = () => {
           />
         </Stack>
       ) : (
+        // else shows products or DATA
         <Box
           maxW="7xl"
           mx="auto"
