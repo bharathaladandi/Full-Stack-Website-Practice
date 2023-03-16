@@ -21,14 +21,14 @@ const getCurrentPage = (val) => {
   }
 
   return val
-}
+};
 
 
 //Fetching Data
 const getData = (url) => {
 
   return fetch(url).then((res) => res.json())
-}
+};
 
 
 
@@ -53,7 +53,6 @@ export const Products = () => {
     getData(`https://blossombackend.onrender.com/products/Sale/asc?page=${page}&limit=${limit}`).then((res) => {
 
       // console.log(res);
-
       setData(res);
       setIsLoaded(false);
     })
@@ -75,9 +74,10 @@ export const Products = () => {
 
       {/* If lodding is true then show loding indicator  */}
       {isLoaded ? (
-        <Stack padding={4} spacing={1} marginTop={250} alignItems={'center'}
-        justifyContent={'center'}
-        display={'flex'} >
+        <Stack padding={4} spacing={1} marginTop={50}
+        marginBottom={250} alignItems={'center'}
+          justifyContent={'center'}
+          display={'flex'} >
           <Spinner
             thickness='4px'
             speed='0.65s'
@@ -87,6 +87,7 @@ export const Products = () => {
             alignItems={'center'}
             justifyContent={'center'}
             display={'flex'}
+            marginTop={100}
           />
         </Stack>
       ) : (
@@ -105,6 +106,7 @@ export const Products = () => {
             lg: '12',
           }}
           marginTop='50px'
+          marginBottom='50px'
         >
 
           <ProductGrid>
@@ -117,7 +119,7 @@ export const Products = () => {
               //     <h5> Price: {item.price}</h5>
               //   </Link>
               // </div>
-              <Link key={item._id}   to={`/products/${item._id}`}>
+              <Link key={item._id} to={`/products/${item._id}`}>
                 <ProductCard key={item._id} product={item} />
               </Link>
             ))}
@@ -127,19 +129,17 @@ export const Products = () => {
           <ProductGrid>
             <div style={{ gap: '30px', margin: 'auto', marginTop: '50px' }}>
 
-            <Tooltip label={page === 1}>
-  {/* <Button disabled>Submit</Button> */}
+              <Tooltip label={page === 1}>
+                {/* <Button disabled>Submit</Button> */}
 
-              <Button style={{ marginRight: '20px' }} disabled={page===1} onClick={() => setPage(page - 1)}>PREV</Button>
+                <Button style={{ marginRight: '20px' }} disabled={page === 1} onClick={() => setPage(page - 1)}>PREV</Button>
               </Tooltip>
               <button style={{ margin: 'auto' }}>{page}</button>
               <Button style={{ marginLeft: '20px' }} onClick={() => setPage(page + 1)}>NEXT</Button>
             </div>
-
-
           </ProductGrid>
         </Box>
       )}
     </div>
   )
-}
+};
