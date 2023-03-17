@@ -20,18 +20,27 @@ export const SingleProduct = () => {
     // Sale
 
     // let id = params.id;
+
+
+    // GET all DATA from here
     useEffect(() => {
 
         setIsLoaded(true)
+        // loading is start 
         getData(`https://blossombackend.onrender.com/products/Sale/${product_id}/spec`).then((res) => {
 
             console.log(res[0])
             setProductDetails(res[0])
             setIsLoaded(false)
+
+            // loading is end
         })
     }, [product_id]);
 
     return (
+
+        // This is basic UI
+
         // <div
         // style={{
 
@@ -52,6 +61,9 @@ export const SingleProduct = () => {
         // </div>
 
         <div style={{ marginTop: '100px', marginBottom: '80px' }}>
+
+{/* This is first UI (vartical) */}
+
             {/* <Card maxW='lg' alignItems={'center'} m={'auto'}>
                 <CardBody>
                     <Image
@@ -83,8 +95,10 @@ export const SingleProduct = () => {
                 </CardFooter>
             </Card> */}
 
-
+{/* This is Secound UI (horizental) */}
             {isLoaded ? (
+
+                // If loading is true show this UI.
                 <Stack padding={4} spacing={1} 
                  alignItems={'center'}
                     justifyContent={'center'}
@@ -102,6 +116,8 @@ export const SingleProduct = () => {
                     />
                 </Stack>
             ) : (
+
+                // Else If loading is false or data is fetched then show this UI.
                 <Card
                     direction={{ base: 'column', sm: 'row' }}
                     overflow='hidden'
