@@ -154,6 +154,7 @@ export const SingleProduct = () => {
                             <Button variant='ghost' colorScheme='blue'>
                                 Add to cart
                             </Button>
+
                         </CardFooter>
                     </Stack>
                 </Card>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-
+import { useSelector } from 'react-redux';
 
 import {
   Box,
@@ -22,6 +22,8 @@ import {
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
+
+  const items = useSelector((state) => state.cart);
 
   return (
     <Box  >
@@ -62,7 +64,7 @@ export default function Navbar() {
             <Stack direction={'row'} spacing={4}>
               <Link to="/"><h3>Home</h3></Link>
               <Link to="/products"><h3>Product</h3></Link>
-              <Link to="/cart"><h3>Cart</h3></Link>
+              <Link to="/cart"><h3>Cart: {items.length} </h3></Link>
               <Link to="/signup"><h3>Signup</h3></Link>
               <Link to="/login"><h3>Login</h3></Link>
             </Stack>

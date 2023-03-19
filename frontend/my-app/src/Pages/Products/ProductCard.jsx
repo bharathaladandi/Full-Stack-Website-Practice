@@ -12,13 +12,27 @@ import {
   } from '@chakra-ui/react'
 import { FavouriteButton } from './FavouriteButton'
 import { PriceTag } from './PriceTag'
-  
-  
 import { Rating } from './Rating'
-  
+
+import { useDispatch } from 'react-redux';
+import { add } from '../../Redux/cartSlice';
+import { useState } from 'react';
+
   export const ProductCard = (props) => {
+
+    
+    const dispatch = useDispatch();
+
+    const [products, setProducts] = useState([]);
     const { product, rootProps } = props
     const { category, title, image, price, rating } = product
+
+
+    const handleAdd = (product) => {
+
+      dispatch(add(product))
+    }
+
     return (
       <Stack
         spacing={{
@@ -27,6 +41,7 @@ import { Rating } from './Rating'
         }}
         {...rootProps}
       >
+        
         <Box position="relative">
           <AspectRatio ratio={4 / 4}>
             <Image
@@ -61,9 +76,12 @@ import { Rating } from './Rating'
             </Text>
           </HStack>
         </Stack>
+
+
+
         <Stack align="center">
-          <Button colorScheme="blue" width="full">
-          Quick shop
+          <Button onClick={() => handleAdd(product)} colorScheme="blue" width="full">
+          {/* Quick shop */} Add to Cart
           </Button>
           <Link
             textDecoration="underline"
