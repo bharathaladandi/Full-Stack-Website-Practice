@@ -15,6 +15,7 @@ export const SingleProduct = () => {
     const { product_id } = useParams();
     const [isLoaded, setIsLoaded] = useState(false);
 
+    // This is another api (Beauti Products API)
     // https://blossombackend.onrender.com/products/Sale/${id}/spec
 
     // Sale
@@ -94,6 +95,7 @@ export const SingleProduct = () => {
                     </ButtonGroup>
                 </CardFooter>
             </Card> */}
+
 
 {/* This is Secound UI (horizental) */}
             {isLoaded ? (

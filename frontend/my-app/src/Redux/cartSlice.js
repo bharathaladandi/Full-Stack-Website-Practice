@@ -19,7 +19,7 @@ const cartSlice = createSlice({
         },
     }
 
-})
+});
 
 
 export const { add, remove } = cartSlice.actions;
