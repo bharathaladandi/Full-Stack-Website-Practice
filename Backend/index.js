@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const connect = require("./config/db");
-
+const cors = require('cors')
 
 //Imports routes path
  const { UserRouter } = require("./Routes/user.routes");
@@ -18,8 +18,8 @@ const PORT = process.env.PORT || 8000;
 
 // Give query to route
 app.use("/users", UserRouter);
-app.use("/product", ProductRouter);
-app.use("/cart", CartRouter);
+// app.use("/product", ProductRouter);
+// app.use("/cart", CartRouter);
 
 
 

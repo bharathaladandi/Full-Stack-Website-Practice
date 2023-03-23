@@ -5,50 +5,55 @@ const bcrypt = require("bcrypt");
 const Usermodel = require("../models/userModel");
 
 // GET Method
-// UserRouter.get("/", async(req,res) => {
+UserRouter.get("/", async(req,res) => {
 
-//    res.send("welcome");
+   res.send("welcome");
 
-// })
+})
 
-// UserRouter.post("/login",async(req,res)=>{
-//     const {email,password}=req.body;
-//     if(email&&password){
-//           try{
-//               const userData=await Usermodel.findOne({email});
-//               if(userData?.name.length>0){
-//                   const isMatch=await bcrypt.compare(password,userData.password);
+UserRouter.post("/login",async(req,res)=>{
+    const {email,password}=req.body;
+    if(email&&password){
+          try{
+              const userData=await Usermodel.findOne({email});
+              if(userData?.name.length>0){
+                  const isMatch=await bcrypt.compare(password,userData.password);
   
-//                   if(isMatch){
-//                       const token=jwt.sign({"userid":userData._id},process.env.JWT)
-//                       res.status(200).send({msg:"Login Success",token:token})
+                  if(isMatch){
+                      const token=jwt.sign({"userid":userData._id},process.env.JWT)
+                      res.status(200).send({msg:"Login Success",token:token})
   
-//                   }else{
-//                       res.status(400).send({"msg":"Wrong Password"})
-//                   }
+                  }else{
+                      res.status(400).send({"msg":"Wrong Password"})
+                  }
   
   
-//               }else{
-//                   res.status(404).send({"msg":"No Account Found"})
-//               }
+              }else{
+                  res.status(404).send({"msg":"No Account Found"})
+              }
   
-//           }catch(err){
-//               res.status(400).send({"msg":err.message})
-//           }
-//     }else{
-//       res.status(400).send({"msg":"Email & password required"})
-//     }
-//   })
+          }catch(err){
+              res.status(400).send({"msg":err.message})
+          }
+    }else{
+      res.status(400).send({"msg":"Email & password required"})
+    }
+  })
 
 
 
 // UserRouter.post("/signup",async(req,res)=>{
 //     const {name,email,password}=req.body;
+
+//     const userPresent = await Usermodel.findOne({email})
+//     if(userPresent){
+//         res.send("Try loggin in, already exist")
+//     }
 //     if(name&&email&&password){
 //         try{   
 //             const hashed_password=await bcrypt.hash(password,12)
 //             const newdf = await Usermodel({...req.body,password:hashed_password})
-//             await newdf();
+//             await newdf.save();
 //             res.status(200).send({"msg":"Signup Successfull"})
 //         }catch(err){
 //             res.status(500).send({msg:err.message})
@@ -69,63 +74,82 @@ UserRouter.get("/", (req, res) => {
 })
 
 
-
-
-
-
-
-
-
-
 UserRouter.post("/signup", async (req, res) => {
-
-    const data = req.body;
-
-    try {
-        const user = new Usermodel(data);
-
-        await user.save();
-
-        res.send("signup successfull")
+    const {email, password,firstName, lastName} = req.body;
+    const userPresent = await Usermodel.findOne({email})
+    if(userPresent){
+        res.send("Try loggin in, already exist")
     }
-    catch (e) {
-        console.log(e.message);
-        res.send("User Already exist, Please try another email address")
+    try{
+        bcrypt.hash(password, 4, async function(err, hash) {
+            const user = new Usermodel({email,password:hash,firstName, lastName})
+            await user.save()
+            res.send("Sign up successfull")
+        });
+       
     }
+   catch(err){
+        console.log(err)
+        res.send("Something went wrong, pls try again later")
+   }
 
-})
+});
+
+
+
+
+
+
+
+// UserRouter.post("/signup", async (req, res) => {
+
+//     const data = req.body;
+
+//     try {
+//         const user = new Usermodel(data);
+
+//         await user.save();
+
+//         res.send("signup successfull")
+//     }
+//     catch (e) {
+//         console.log(e.message);
+//         res.send("User Already exist, Please try another email address")
+//     }
+
+// })
  
 
 
 
 
-UserRouter.post("/login", async (req, res) => {
+// UserRouter.post("/login", async (req, res) => {
 
-    const { email, password } = req.body;
+//     const { email, password } = req.body;
 
-    try {
-        const user = await Usermodel.find({ email, password })
+//     try {
+//         const user = await Usermodel.find({ email, password })
 
-        if (user.length > 0) {
-            var token = jwt.sign({ 'foo': 'bar' }, 'fullstack');
-            res.send({"msg":"Login Successfull", "token": token})
+//         if (user.length > 0) {
+//             var token = jwt.sign({ 'foo': 'bar' }, 'fullstack');
+//             res.send({"msg":"Login Successfull", "token": token})
             
-        }
-        else {
+//         }
+//         else {
 
-            res.send("Login Failed ")
+//             res.send("Login Failed ")
             
-        }
-        // console.log(user);
+//         }
+//         // console.log(user);
 
-    } catch (error) {
+//     } catch (error) {
 
-        console.log(error.message);
-        res.send("Something Went Wrong, Please try again later")
-    }
-    res.send("work in progess")
+//         console.log(error.message);
+//         res.send("Something Went Wrong, Please try again later")
+//     }
+//     res.send("work in progess")
 
-})
+// })
 
 
 
