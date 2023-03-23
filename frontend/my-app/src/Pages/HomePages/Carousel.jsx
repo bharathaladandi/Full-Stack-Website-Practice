@@ -1,11 +1,14 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link } from "react-router-dom";
-import Four from "../../assets/25cd1aa0281e4842977cfaf336c9c99f.jpg.webp";
-import Three from "../../assets/da409d74a0174dc1a31e0f5935efd007.jpg.webp";
-import First from "../../assets/elainacom.jpg";
-import Five from "../../assets/Category_Banner_test_anime_anime_3.png";
-import Six from "../../assets/73f378ded2ab4da59798f278f3704234.jpg.webp";
+import Four from "../../assets/final-fantasy-xiv-stormblood-miqo-te-wallpaper-2400x1350_50.jpg";
+import Three from "../../assets/2571513.webp";
+import Seven from "../../assets/samurai-girl-katana-wallpaper-1366x768_46.jpg";
+import Five from "../../assets/sucker_punch_by_syn_k.jpg";
+import Six from "../../assets/wallpapersden.com_samurai-ghost-of-tsushima_3840x2160.jpg";
+import First from "../../assets/samurai-girl-k-guweiz-wallpaper.jpg";
+import Eight from "../../assets/samurai-_-wallpaper-1366x768-wallpaper.jpg";
+
 
 const slider = [
   {
@@ -22,6 +25,12 @@ const slider = [
   },
   {
     image: Six,
+  },
+  {
+    image: Seven,
+  },
+  {
+    image: Eight,
   },
 ];
 

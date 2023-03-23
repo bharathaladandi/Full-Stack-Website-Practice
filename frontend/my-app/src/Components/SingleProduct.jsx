@@ -63,7 +63,7 @@ export const SingleProduct = () => {
         //     <Link to='/products'><h3>GO BACK </h3></Link>
         // </div>
 
-        <div style={{ marginTop: '100px', marginBottom: '80px' }}>
+        <div style={{ marginBottom: '80px' }}>
 
 {/* This is first UI (vartical) */}
 
@@ -123,6 +123,7 @@ export const SingleProduct = () => {
 
                 // Else If loading is false or data is fetched then show this UI.
                 <Card
+                    // style={{backgroundImage:"url('https://w0.peakpx.com/wallpaper/925/686/HD-wallpaper-whatsapp-background-patterns-texture-thumbnail.jpg')"}}
                     direction={{ base: 'column', sm: 'row' }}
                     overflow='hidden'
                     variant='outline'
