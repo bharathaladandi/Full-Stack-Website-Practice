@@ -2,8 +2,10 @@ import { CloseButton, Flex, Link, Select, useColorModeValue } from '@chakra-ui/r
 import { PriceTag } from './PriceTag'
 import { CartProductMeta } from './CartProductMeta'
 
-
+import { remove } from '../../Redux/cartSlice'
+import { useDispatch, useSelector } from 'react-redux'
 const QuantitySelect = (props) => {
+
   return (
     <Select
       maxW="64px"
@@ -31,7 +33,19 @@ export const CartItem = (props) => {
     onChangeQuantity,
     onClickDelete,
   } = props
+
+  const dispatch = useDispatch()
+  const products = useSelector((state) => state.cart);
+
+  const handleRemove = (productId) => {
+
+    dispatch(remove(productId))
+  }
+
+
   return (
+
+
     <Flex
       direction={{
         base: 'column',
@@ -40,6 +54,7 @@ export const CartItem = (props) => {
       justify="space-between"
       align="center"
     >
+
       <CartProductMeta
         name={title}
         // description={description}
@@ -63,7 +78,10 @@ export const CartItem = (props) => {
           }}
         />
         <PriceTag price={price} currency={currency} />
-        <CloseButton aria-label={`Delete ${title} from cart`} onClick={onClickDelete} />
+
+        {products && products.map((item) => (
+          <CloseButton aria-label={`Delete ${title} from cart`} onClick={() => handleRemove(item._id)} />
+        ))}
       </Flex>
 
       {/* Mobile */}
@@ -88,6 +106,12 @@ export const CartItem = (props) => {
         />
         <PriceTag price={price} currency={currency} />
       </Flex>
+
     </Flex>
+
   )
 }
+
+{/* {products && products.map((item) => ( */ }
+{/* <CartItem /> */ }
+{/* ))} */ }

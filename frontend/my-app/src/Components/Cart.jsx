@@ -43,6 +43,8 @@ export const Cart = () => {
   const products = useSelector((state) => state.cart);
 
 
+  const itemlength = useSelector((state) => state.cart);
+
   // const handleRemove = (productId) => {
 
   //   dispatch(remove(productId))
@@ -130,7 +132,7 @@ export const Cart = () => {
 
     // </div>
 
-    <div>
+    <div style={{marginTop: '50px'}}>
 <Box
     maxW={{
       base: '3xl',
@@ -169,12 +171,12 @@ export const Cart = () => {
         flex="2"
       >
         <Heading fontSize="2xl" fontWeight="extrabold">
-          Shopping Cart (3 items)
+          Shopping Cart ({itemlength.length} items)
         </Heading>
         {/* {
           products && products.map((item) => ( */}
         <Stack spacing="6">
-          {products.map((item) => (
+          {products && products.map((item) => (
             <CartItem key={item._id} {...item} />
           ))}
         </Stack>
