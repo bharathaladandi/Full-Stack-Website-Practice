@@ -112,6 +112,3 @@ export const CartItem = (props) => {
   )
 }
 
-{/* {products && products.map((item) => ( */ }
-{/* <CartItem /> */ }
-{/* ))} */ }
