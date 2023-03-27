@@ -16,7 +16,7 @@ import { YourDailyStaples } from '../Pages/HomePages/YourDailyStaples'
 
 export const Homepage = () => {
   return (
-    <div style={{ width: "80%", margin: "auto" , backgroundColor:'#f7fafc', backgroundImage:"url('https://w0.peakpx.com/wallpaper/154/372/HD-wallpaper-telegram-background-whatsapp-creative-android-pattern-texture-abstract.jpg')"}}>
+    <div  style={{ width: "80%", margin: "auto" , backgroundColor:'#f7fafc', backgroundImage:"url('https://w0.peakpx.com/wallpaper/154/372/HD-wallpaper-telegram-background-whatsapp-creative-android-pattern-texture-abstract.jpg')"}}>
     <br />
     <br />
     {/* <Navbar /> */}
