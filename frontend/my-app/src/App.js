@@ -13,7 +13,7 @@ function App() {
 
     // #f7fafc
     // #f6f6f6
-    <div  className="App">
+    <div  className="App"style={{backgroundImage:"url('https://w0.peakpx.com/wallpaper/154/372/HD-wallpaper-telegram-background-whatsapp-creative-android-pattern-texture-abstract.jpg')", backgroundColor:'#f7fafc'}} >
       <Navbar />
       <AllRoutes /> 
       <Footer />
