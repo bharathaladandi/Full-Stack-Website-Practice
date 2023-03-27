@@ -14,16 +14,24 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  Switch,
+  useColorMode,
 } from '@chakra-ui/react';
 import {
   HamburgerIcon,
   CloseIcon,
 } from '@chakra-ui/icons';
 
+import { BsToggle2On, BsToggle2Off } from "react-icons/bs";
+
+
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
 
   const items = useSelector((state) => state.cart);
+
+  const { colorMode, toggleColorMode } = useColorMode()
+
 
   return (
     <Box  >
@@ -38,7 +46,7 @@ export default function Navbar() {
         borderColor={useColorModeValue('gray.200', 'gray.900')}
         align={'center'}
         w="100%"
-        >
+      >
         <Flex
           flex={{ base: 1, md: 'auto' }}
           ml={{ base: -2 }}
@@ -76,6 +84,19 @@ export default function Navbar() {
           justify={'flex-end'}
           direction={'row'}
           spacing={6}>
+
+<IconButton
+            bg={"transparent"}
+            fontSize={"25px"}
+            onClick={toggleColorMode}
+            icon={
+              colorMode === "light" ? (
+                <BsToggle2Off />
+              ) : (
+                <BsToggle2On color={"blue"} />
+              )
+            }
+          />
           <Link to='/login'>
             <Button
               as={'a'}
