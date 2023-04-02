@@ -28,12 +28,6 @@ import { CartItem } from '../Pages/Cart/CartItem';
 
 import { CartOrderSummary } from '../Pages/Cart/CartOrderSummary';
 
-// import { FavouriteButton } from '../Pages/Products/FavouriteButton';
-
-// import { PriceTag } from '../Pages/Products/PriceTag';
-
-// import { Rating } from '../Pages/Products/Rating';
-// import { ProductGrid } from '../Pages/Products/ProductGrid';
 
 import { remove } from '../Redux/cartSlice';
 
