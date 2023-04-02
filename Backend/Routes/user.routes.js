@@ -5,40 +5,46 @@ const bcrypt = require("bcrypt");
 const Usermodel = require("../models/userModel");
 
 // GET Method
-UserRouter.get("/", async(req,res) => {
+UserRouter.get("/", async (req, res) => {
 
-   res.send("welcome");
+    res.send("welcome");
 
 })
 
-UserRouter.post("/login",async(req,res)=>{
-    const {email,password}=req.body;
-    if(email&&password){
-          try{
-              const userData=await Usermodel.findOne({email});
-              if(userData?.name.length>0){
-                  const isMatch=await bcrypt.compare(password,userData.password);
-  
-                  if(isMatch){
-                      const token=jwt.sign({"userid":userData._id},process.env.JWT)
-                      res.status(200).send({msg:"Login Success",token:token})
-  
-                  }else{
-                      res.status(400).send({"msg":"Wrong Password"})
-                  }
-  
-  
-              }else{
-                  res.status(404).send({"msg":"No Account Found"})
-              }
-  
-          }catch(err){
-              res.status(400).send({"msg":err.message})
-          }
-    }else{
-      res.status(400).send({"msg":"Email & password required"})
+UserRouter.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+    if (email && password) {
+        try {
+            const user = await Usermodel.find({ email });
+            if (user.length > 0) {
+
+                const hashed_password = user[0].password;
+
+                bcrypt.compare(password, hashed_password, function (err, result) {
+
+                    if (result) {
+                        const token = jwt.sign({ "userid": user[0]._id }, 'hush')
+                        res.status(200).send({ msg: "Login Success", "token": token })
+
+                    } else {
+                        res.status(400).send({ "msg": "Wrong Password" })
+                    }
+                })
+
+
+
+
+            } else {
+                res.status(404).send({ "msg": "No Account Found" })
+            }
+
+        } catch (err) {
+            res.status(400).send({ "msg": err.message })
+        }
+    } else {
+        res.status(400).send({ "msg": "Email & password required" })
     }
-  })
+})
 
 
 
@@ -75,23 +81,27 @@ UserRouter.get("/", (req, res) => {
 
 
 UserRouter.post("/signup", async (req, res) => {
-    const {email, password,firstName, lastName} = req.body;
-    const userPresent = await Usermodel.findOne({email})
-    if(userPresent){
+    const { email, password, firstName, lastName } = req.body;
+    const userPresent = await Usermodel.findOne({ email })
+    if (userPresent) {
         res.send("Try loggin in, already exist")
     }
-    try{
-        bcrypt.hash(password, 4, async function(err, hash) {
-            const user = new Usermodel({email,password:hash,firstName, lastName})
-            await user.save()
-            res.send("Sign up successfull")
-        });
-       
+    else {
+        try {
+            bcrypt.hash(password, 4, async function (err, hash) {
+                const user = new Usermodel({ email, password: hash, firstName, lastName })
+                await user.save()
+                res.send("Sign up successfull")
+            });
+
+        }
+        catch (err) {
+            console.log(err)
+            res.send("Something went wrong, pls try again later")
+        }
+
     }
-   catch(err){
-        console.log(err)
-        res.send("Something went wrong, pls try again later")
-   }
+
 
 });
 
@@ -118,7 +128,7 @@ UserRouter.post("/signup", async (req, res) => {
 //     }
 
 // })
- 
+
 
 
 
@@ -133,12 +143,12 @@ UserRouter.post("/signup", async (req, res) => {
 //         if (user.length > 0) {
 //             var token = jwt.sign({ 'foo': 'bar' }, 'fullstack');
 //             res.send({"msg":"Login Successfull", "token": token})
-            
+
 //         }
 //         else {
 
 //             res.send("Login Failed ")
-            
+
 //         }
 //         // console.log(user);
 
@@ -173,14 +183,14 @@ UserRouter.get("/about", (req, res) => {
 UserRouter.get("/weather", (req, res) => {
 
     const token = req.headers.authorization?.split(" ")[1]
-    
+
     var decoded = jwt.verify(token, 'fullstack', (err, decoded) => {
 
-        if(err){
+        if (err) {
             console.log(err);
             res.send("Please Login Again")
         }
-        else if(decoded){
+        else if (decoded) {
             console.log(decoded);
             res.send("Weather Data............")
         }
@@ -193,14 +203,14 @@ UserRouter.get("/weather", (req, res) => {
 UserRouter.get("/purchase", (req, res) => {
 
     const token = req.headers.authorization?.split(" ")[1]
-    
+
     var decoded = jwt.verify(token, 'fullstack', (err, decoded) => {
 
-        if(err){
+        if (err) {
             console.log(err);
             res.send("Please Login Again")
         }
-        else if(decoded){
+        else if (decoded) {
             console.log(decoded);
             res.send("Purchase Data............")
         }
@@ -214,4 +224,4 @@ UserRouter.get("/contact", (req, res) => {
     res.send("Contact Data");
 })
 
-module.exports =  {UserRouter} 
+module.exports = { UserRouter } 
