@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import {
   Button,
@@ -13,7 +13,34 @@ import {
   Image,
 } from '@chakra-ui/react';
 
-export const Login = () =>  {
+export const Login = () => {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleSubmit = (e) => {
+
+    const payload = {
+      email, password
+    };
+
+
+    fetch("http://localhost:8080/users/login", {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((res) => res.json())
+      // .then((res) => console.log(res))
+      .catch((err) => console.log(err))
+  };
+
+
+  
   return (
     <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
       <Flex p={8} flex={1} align={'center'} justify={'center'}>
@@ -21,11 +48,11 @@ export const Login = () =>  {
           <Heading fontSize={'2xl'}>Sign in to your account</Heading>
           <FormControl id="email">
             <FormLabel>Email address</FormLabel>
-            <Input type="email" />
+            <Input name='email' value={email} onChange={(e) => setEmail(e.target.value)} type="email" />
           </FormControl>
           <FormControl id="password">
             <FormLabel>Password</FormLabel>
-            <Input type="password" />
+            <Input name='password' value={password} onChange={(e) => setPassword(e.target.value)} type={showPassword ? 'text' : 'password'} />
           </FormControl>
           <Stack spacing={6}>
             <Stack
@@ -35,7 +62,9 @@ export const Login = () =>  {
               <Checkbox>Remember me</Checkbox>
               <Link color={'blue.500'}>Forgot password?</Link>
             </Stack>
-            <Button colorScheme={'blue'} variant={'solid'}>
+            <Button
+              onClick={handleSubmit}
+              colorScheme={'blue'} variant={'solid'}>
               Sign in
             </Button>
           </Stack>
