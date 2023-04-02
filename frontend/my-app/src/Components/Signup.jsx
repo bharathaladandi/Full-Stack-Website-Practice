@@ -87,6 +87,7 @@ export const Signup = () => {
 
   return (
     <Flex
+    mt={50}
       minH={'100vh'}
       align={'center'}
       justify={'center'}
