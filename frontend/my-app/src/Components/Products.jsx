@@ -197,8 +197,31 @@ export const Products = () => {
                 </div>
               </div>
 
-             
-             
+              <div className={styles.savings}>
+                <div onClick={() => setClick1(!click1)}>
+                  <p>Get Products By Rating</p>
+                  {click1 ? (
+                    <MdOutlineKeyboardArrowUp className={styles.arrow} />
+                  ) : (
+                    <MdOutlineKeyboardArrowDown className={styles.arrow} />
+                  )}
+                </div>
+              </div>
+              <div
+                className={
+                  click1 ? `${styles.refine_option1}` : `${styles.refine_option2}`
+                }
+              >
+                <div className={styles.sorting}>
+                  <div>Get Products By Rating</div>
+                  <select name="" id="" onChange={sort_func}>
+                    <option value="defalt">Rating</option>
+                    <option value="three">3</option>
+                    <option value="four">4</option>
+                    <option value="five">5</option>
+                  </select>
+                </div>
+              </div>
 
              
             </div>
