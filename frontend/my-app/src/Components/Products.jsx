@@ -4,12 +4,16 @@ import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from "react-router-dom";
 import { ProductCard } from '../Pages/Products/ProductCard';
 import { ProductGrid } from '../Pages/Products/ProductGrid';
+import axios from "axios";
+import styles from './Product.module.css'
 
-
-
+import {
+  MdOutlineKeyboardArrowUp,
+  MdOutlineKeyboardArrowDown,
+} from "react-icons/md";
 
 // Page Logic
-const getCurrentPage = (val) => {
+const getpage = (val) => {
 
   val = Number(val);
 
@@ -34,6 +38,11 @@ const getData = (url) => {
 
 export const Products = () => {
 
+  const [click, setClick] = useState(true);
+  const [click1, setClick1] = useState(true);
+  const [sort_x, setSort_x] = useState("");
+
+
   const [data, setData] = useState([]);
 
   const [isLoaded, setIsLoaded] = useState(false)
@@ -41,22 +50,38 @@ export const Products = () => {
   let [searchParams, setSearchParams] = useSearchParams();
 
   const [page, setPage] = useState(
-    getCurrentPage(searchParams.get("page")) || 1
+    getpage(searchParams.get("page")) || 1
   );
 
   const limit = 5;
 
   // get data from here
+  // useEffect(() => {
+  //   setIsLoaded(true);
+
+  //   getData(`https://blossombackend.onrender.com/products/Sale/asc?page=${page}&limit=${limit}`).then((res) => {
+
+  //     // console.log(res);
+  //     setData(res);
+  //     setIsLoaded(false);
+  //   })
+  // }, [page, sort_x])
+  // setloading(true)
+
   useEffect(() => {
-    setIsLoaded(true);
+    setIsLoaded(true)
+    getData()
+      .then((res) => {
+        setData(res.data)
+        // setloading(false)
+        setIsLoaded(false)
+      }).catch((err) => console.log(err));
 
-    getData(`https://blossombackend.onrender.com/products/Sale/asc?page=${page}&limit=${limit}`).then((res) => {
 
-      // console.log(res);
-      setData(res);
-      setIsLoaded(false);
-    })
-  }, [page])
+
+
+  }, [page, sort_x]);
+
 
 
   // pagination Logic (If pages no. changes our param also change)
@@ -69,11 +94,77 @@ export const Products = () => {
 
 
 
+
+  const getData = () => {
+    if (sort_x === "lowtohigh") {
+      return axios.get(`https://blossombackend.onrender.com/products/Sale/asc?page=${page}`);
+    } else if (sort_x === "hightolow") {
+      return axios.get(
+        `https://blossombackend.onrender.com/products/Sale/desc?page=${page}`
+      );
+    } else if (sort_x === "ot") {
+      return axios.get(`https://blossombackend.onrender.com/products/Sale/ot?page=${page}`);
+    } else if (sort_x === "et") {
+      return axios.get(`https://blossombackend.onrender.com/products/Sale/et?page=${page}`);
+    } else if (sort_x === "tt") {
+      return axios.get(`https://blossombackend.onrender.com/products/Sale/tt?page=${page}`);
+    } else if (sort_x === "ff") {
+      return axios.get(`https://blossombackend.onrender.com/products/Sale/ff?page=${page}`);
+    } else if (sort_x === "af") {
+      return axios.get(`https://blossombackend.onrender.com/products/Sale/af?page=${page}`);
+    } else if (sort_x === "three") {
+      return axios.get(
+        `https://blossombackend.onrender.com/products/Sale/three?page=${page}`
+      );
+    } else if (sort_x === "four") {
+      return axios.get(
+        `https://blossombackend.onrender.com/products/Sale/four?page=${page}`
+      );
+    } else if (sort_x === "five") {
+      return axios.get(
+        `https://blossombackend.onrender.com/products/Sale/five?page=${page}`
+      );
+    } else {
+      return axios.get(
+        `https://blossombackend.onrender.com/products/Sale?page=${page}`
+      );
+    }
+  };
+
+  const sort_func = (event) => {
+    setSort_x(event.target.value);
+    getData(sort_x);
+  };
+
   return (
-    <div key={Date.now()}>
+    <div key={Date.now()} >
 
       {/* If lodding is true then show loding indicator  */}
-      {isLoaded ? (
+      {/* {isLoaded ? (
+        <Stack padding={4} spacing={1} marginTop={50}
+        marginBottom={250} alignItems={'center'}
+          justifyContent={'center'}
+          display={'flex'} >
+          <Spinner
+            thickness='4px'
+            speed='0.65s'
+            emptyColor='gray.200'
+            color='blue.500'
+            size='xl'
+            alignItems={'center'}
+            justifyContent={'center'}
+            display={'flex'}
+            marginTop={100}
+          />
+        </Stack>
+      ) : ( */}
+      <div style={{ display: 'flex', marginTop: '50px'}}>
+
+
+        {/* // else shows products or DATA */}
+        <div style={{margin:'auto'}}>
+
+        {isLoaded ? (
         <Stack padding={4} spacing={1} marginTop={50}
         marginBottom={250} alignItems={'center'}
           justifyContent={'center'}
@@ -91,7 +182,8 @@ export const Products = () => {
           />
         </Stack>
       ) : (
-        // else shows products or DATA
+
+
         <Box
           maxW="7xl"
           mx="auto"
@@ -139,7 +231,12 @@ export const Products = () => {
             </div>
           </ProductGrid>
         </Box>
+
       )}
+        
+        </div>
+      </div>
+      {/* )} */}
     </div>
   )
 };
