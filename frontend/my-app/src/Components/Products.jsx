@@ -161,6 +161,50 @@ export const Products = () => {
       <div style={{ display: 'flex', marginTop: '50px'}}>
 
 
+        <div className={styles.main__sales}>
+          <div className={styles.main__products}>
+            {/* filter section  */}
+            <div style={{ marginTop: "30px" }} className={styles.refine}>
+              <p className={styles.refine_head}>Refine</p>
+              <div>
+                <hr />
+              </div>
+              <div className={styles.savings}>
+                <div onClick={() => setClick(!click)}>
+                  <p>Get Products By Price Range</p>
+                  {click ? (
+                    <MdOutlineKeyboardArrowUp className={styles.arrow} />
+                  ) : (
+                    <MdOutlineKeyboardArrowDown className={styles.arrow} />
+                  )}
+                </div>
+              </div>
+              <div
+                className={
+                  click ? `${styles.refine_option1}` : `${styles.refine_option2}`
+                }
+              >
+                <div className={styles.sorting}>
+                  <div></div>
+                  <select name="" id="" onChange={sort_func}>
+                    <option value="defalt">Price</option>
+                    <option value="ot">Less than $10</option>
+                    <option value="et">$10 to $20</option>
+                    <option value="tt">$20 to $30</option>
+                    <option value="ff">$40 to $50</option>
+                    <option value="af">Above $50</option>
+                  </select>
+                </div>
+              </div>
+
+             
+             
+
+             
+            </div>
+          </div>
+        </div>
+
         {/* // else shows products or DATA */}
         <div style={{margin:'auto'}}>
 
