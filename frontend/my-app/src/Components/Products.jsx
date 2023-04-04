@@ -223,7 +223,15 @@ export const Products = () => {
                 </div>
               </div>
 
-             
+              <div className={styles.sorting}>
+              <div>Get Products By Sort :</div>
+              <select name="" id="" onChange={sort_func}>
+                <option value="defalt">Sort By Price</option>
+                <option value="lowtohigh">Price: Low to High</option>
+                <option value="hightolow">Price: High to Low</option>
+                {/* <option value="a-z">A-Z</option> */}
+              </select>
+            </div>
             </div>
           </div>
         </div>
