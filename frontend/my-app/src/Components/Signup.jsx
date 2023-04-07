@@ -19,7 +19,7 @@ import {
   Heading,
   Text,
   useColorModeValue,
-} from '@chakra-ui/react';
+} from '@chakra-ui/react'; 
 
 import { useNavigate } from "react-router-dom";
 
@@ -30,41 +30,14 @@ export const Signup = () => {
   const [password, setPassword] = useState("")
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
-  // const [signupDetails, setSignupDetails] = useState(
-  //   {
-  //     email: "",
-  //     password: "",
-  //     firstName: "",
-  //     lastName: "",
-  //     age: ""
-  //   });
 
-  // const { email, password, firstName, lastName,} = signupDetails;
 
   const [showPassword, setShowPassword] = useState(false);
 
 
-  // const handleChange = (e) => {
-
-  //   const {name, value} = e.target;
-  //   setSignupDetails({...signupDetails, [name]: value});
-  // };
 
   const handleSubmit = (e) => {
 
-    // e.preventDefault();
-
-    // axios({
-    //   method: 'POST',
-    //   url:`http://localhost:8080/users/signup`,
-    //   data: signupDetails,
-    // })
-    // .then((res) => {
-
-    //   console.log(res.data.token);
-    //   // alert('signup successfully')
-    //   navigate('/Login')
-    // })
 
 
     const payload = {
