@@ -1,4 +1,4 @@
-import { Box, Button, Stack, Spinner, Tooltip } from '@chakra-ui/react';
+import { Box, Button, Stack, Spinner, Tooltip, Center, Container, HStack } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
 import { Link, useSearchParams } from "react-router-dom";
@@ -294,16 +294,29 @@ export const Products = () => {
 
 
           <ProductGrid>
-            <div style={{ gap: '30px', margin: 'auto', marginTop: '50px' }}>
+            {/* <div style={{ gap: '30px', margin: 'auto', marginTop: '50px' }}> */}
 
-              <Tooltip label={page === 1}>
+              {/* <Tooltip label={page === 1}> */}
                 {/* <Button disabled>Submit</Button> */}
 
-                <Button style={{ marginRight: '20px' }} disabled={page === 1} onClick={() => setPage(page - 1)}>PREV</Button>
-              </Tooltip>
-              <button style={{ margin: 'auto' }}>{page}</button>
-              <Button style={{ marginLeft: '20px' }} onClick={() => setPage(page + 1)}>NEXT</Button>
-            </div>
+                {/* <Button style={{ marginRight: '20px' }}  disabled={page==2} onClick={() => {setPage(prev => prev- 1)}}>PREV</Button> */}
+              {/* </Tooltip> */}
+              {/* <Button style={{ margin: 'auto' }}>{page}</Button>
+              <Button style={{ marginLeft: '20px' }} onClick={() =>{setPage(prev => prev+ 1)}}>NEXT</Button>
+            </div> */}
+
+
+
+<Container padding="20px" minW={"100%"}>
+            <Center>
+           <HStack gap="20px">
+           <Button disabled={page==1} onClick={()=>{setPage(prev=>prev-1)}} >Prev</Button>
+            <Button>{page}</Button>
+            <Button onClick={()=>{setPage(prev=>prev+1)}}>Next</Button>
+           </HStack>
+
+            </Center>
+        </Container>
           </ProductGrid>
         </Box>
 
