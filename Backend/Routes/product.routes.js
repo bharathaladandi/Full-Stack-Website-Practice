@@ -9,19 +9,17 @@ const {Productmodel} = require("../models/product.model");
 //GET Method 
 
 ProductRouter.get("/all" , async (req, res) => {
-
 try{
-
     const getProduct = await Productmodel.Find()
-
     res.status(200).send(getProduct)
 }
 catch(e){
-
     res.status(400).send(e.message);
     console.log(e.message);
 }
 })
+
+
 
 
 
@@ -56,6 +54,19 @@ ProductRouter.get("/", async(req, res) => {
     }
 })
 
+ProductRouter.get("/:category", async(req, res) => {
+
+    const {limit= 10, page= 1} = req.query;
+
+    let { category } = req.params;
+
+    try {
+        let products = await Productmodel.find({category: category}).limit(12).skip((page-1) * limit);
+        
+    } catch (error) {
+        console.log(error.message);
+    }
+})
 
 // GET product based on search and apply filter based on q && page || category || brand
 

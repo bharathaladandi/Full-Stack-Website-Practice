@@ -299,11 +299,11 @@ export const Products = () => {
               {/* <Tooltip label={page === 1}> */}
                 {/* <Button disabled>Submit</Button> */}
 
-                {/* <Button style={{ marginRight: '20px' }}  disabled={page==2} onClick={() => {setPage(prev => prev- 1)}}>PREV</Button> */}
+                <Button style={{ marginRight: '20px' }}  disabled={page==2} onClick={() => {setPage(prev => prev- 1)}}>PREV</Button>
               {/* </Tooltip> */}
-              {/* <Button style={{ margin: 'auto' }}>{page}</Button>
+              <Button style={{ margin: 'auto' }}>{page}</Button>
               <Button style={{ marginLeft: '20px' }} onClick={() =>{setPage(prev => prev+ 1)}}>NEXT</Button>
-            </div> */}
+            </div>
 
 
 
