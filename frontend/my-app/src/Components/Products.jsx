@@ -294,7 +294,7 @@ export const Products = () => {
 
 
           <ProductGrid>
-            {/* <div style={{ gap: '30px', margin: 'auto', marginTop: '50px' }}> */}
+            <div style={{ gap: '30px', margin: 'auto', marginTop: '50px' }}>
 
               {/* <Tooltip label={page === 1}> */}
                 {/* <Button disabled>Submit</Button> */}
