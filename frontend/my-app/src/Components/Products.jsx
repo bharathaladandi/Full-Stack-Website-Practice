@@ -139,7 +139,25 @@ export const Products = () => {
   return (
     <div key={Date.now()} >
 
-  
+      {/* If lodding is true then show loding indicator  */}
+      {/* {isLoaded ? (
+        <Stack padding={4} spacing={1} marginTop={50}
+        marginBottom={250} alignItems={'center'}
+          justifyContent={'center'}
+          display={'flex'} >
+          <Spinner
+            thickness='4px'
+            speed='0.65s'
+            emptyColor='gray.200'
+            color='blue.500'
+            size='xl'
+            alignItems={'center'}
+            justifyContent={'center'}
+            display={'flex'}
+            marginTop={100}
+          />
+        </Stack>
+      ) : ( */}
       <div style={{ display: 'flex', marginTop: '50px'}}>
 
 
@@ -211,6 +229,7 @@ export const Products = () => {
                 <option value="defalt">Sort By Price</option>
                 <option value="lowtohigh">Price: Low to High</option>
                 <option value="hightolow">Price: High to Low</option>
+                {/* <option value="a-z">A-Z</option> */}
               </select>
             </div>
             </div>
@@ -260,7 +279,13 @@ export const Products = () => {
           <ProductGrid>
             {data?.map((item) => (
               //box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-   
+              // <div style={{ boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px' }} key={item._id}>
+              //   <Link to={`/products/${item._id}`}>
+              //     <img style={{ marginTop: '20px', alignItems: 'center', height: '100px', width: '130px' }} src={item.image} alt="prof.img" />
+              //     <h6>{item.title}</h6>
+              //     <h5> Price: {item.price}</h5>
+              //   </Link>
+              // </div>
               <Link key={item._id} to={`/products/${item._id}`}>
                 <ProductCard key={item._id} product={item} />
               </Link>
