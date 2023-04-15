@@ -73,8 +73,8 @@ export default function Navbar() {
               <Link to="/"><h3>Home</h3></Link>
               <Link to="/products"><h3>Product</h3></Link>
               <Link to="/cart"><h3>Cart: {items.length} </h3></Link>
-              <Link to="/signup"><h3>Signup</h3></Link>
-              <Link to="/login"><h3>Login</h3></Link>
+              <Link to="/products"><h3>Best Sellar</h3></Link>
+              <Link to="/products"><h3>Offers</h3></Link>
             </Stack>
           </Flex>
         </Flex>
