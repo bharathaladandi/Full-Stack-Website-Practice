@@ -13,6 +13,7 @@ import Read from '../Pages/HomePages/Read'
 import { SnacksStore } from '../Pages/HomePages/SnacksStore'
 import { TopOffers } from '../Pages/HomePages/TopOffers'
 import { YourDailyStaples } from '../Pages/HomePages/YourDailyStaples'
+import { Box } from '@chakra-ui/react'
 
 export const Homepage = () => {
   return (

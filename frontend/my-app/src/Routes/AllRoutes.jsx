@@ -6,10 +6,11 @@ import { Login } from '../Components/Login'
 import { Products } from '../Components/Products'
 import { Signup } from '../Components/Signup'
 import { SingleProduct } from '../Components/SingleProduct';
+import { Box } from '@chakra-ui/react';
 
 export const AllRoutes = () => {
   return (
-    <div>
+    <Box>
         <Routes>
             <Route path='/' element={<Homepage />}></Route>
             <Route path='/products' element={<Products />}></Route>
@@ -18,6 +19,6 @@ export const AllRoutes = () => {
             <Route path='/login' element={<Login />}></Route>
             <Route path='/products/:product_id' element={<SingleProduct />}></Route>
         </Routes>
-    </div>
+    </Box>
   )
 }
