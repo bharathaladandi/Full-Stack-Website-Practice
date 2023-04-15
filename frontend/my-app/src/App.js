@@ -3,6 +3,7 @@ import './App.css';
 import  Navbar  from './Components/Navbar';
 import { AllRoutes } from './Routes/AllRoutes';
 import Footer from './Pages/Footer/Footer';
+import { Box } from '@chakra-ui/react';
 
 
 function App() {
@@ -15,11 +16,11 @@ function App() {
     // #f6f6f6
 
     
-    <div  className="App" >
+    <Box  className="App" >
       <Navbar />
       <AllRoutes /> 
       <Footer />
-    </div>
+    </Box>
 
 
   );
