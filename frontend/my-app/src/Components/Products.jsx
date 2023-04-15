@@ -137,7 +137,7 @@ export const Products = () => {
   };
 
   return (
-    <div key={Date.now()} >
+    <Box key={Date.now()} >
 
       {/* If lodding is true then show loding indicator  */}
       {/* {isLoaded ? (
@@ -158,34 +158,34 @@ export const Products = () => {
           />
         </Stack>
       ) : ( */}
-      <div style={{ display: 'flex', marginTop: '50px'}}>
+      <Box style={{ display: 'flex', marginTop: '50px'}}>
 
 
-        <div className={styles.main__sales}>
-          <div className={styles.main__products}>
+        <Box className={styles.main__sales}>
+          <Box className={styles.main__products}>
             {/* filter section  */}
-            <div style={{ marginTop: "30px" }} className={styles.refine}>
+            <Box style={{ marginTop: "30px" }} className={styles.refine}>
               <p className={styles.refine_head}>Refine</p>
-              <div>
+              <Box>
                 <hr />
-              </div>
-              <div className={styles.savings}>
-                <div onClick={() => setClick(!click)}>
+              </Box>
+              <Box className={styles.savings}>
+                <Box onClick={() => setClick(!click)}>
                   <p>Get Products By Price Range</p>
                   {click ? (
                     <MdOutlineKeyboardArrowUp className={styles.arrow} />
                   ) : (
                     <MdOutlineKeyboardArrowDown className={styles.arrow} />
                   )}
-                </div>
-              </div>
-              <div
+                </Box>
+              </Box>
+              <Box
                 className={
                   click ? `${styles.refine_option1}` : `${styles.refine_option2}`
                 }
               >
-                <div className={styles.sorting}>
-                  <div></div>
+                <Box className={styles.sorting}>
+                  <Box></Box>
                   <select name="" id="" onChange={sort_func}>
                     <option value="defalt">Price</option>
                     <option value="ot">Less than $10</option>
@@ -194,50 +194,50 @@ export const Products = () => {
                     <option value="ff">$40 to $50</option>
                     <option value="af">Above $50</option>
                   </select>
-                </div>
-              </div>
+                </Box>
+              </Box>
 
-              <div className={styles.savings}>
-                <div onClick={() => setClick1(!click1)}>
+              <Box className={styles.savings}>
+                <Box onClick={() => setClick1(!click1)}>
                   <p>Get Products By Rating</p>
                   {click1 ? (
                     <MdOutlineKeyboardArrowUp className={styles.arrow} />
                   ) : (
                     <MdOutlineKeyboardArrowDown className={styles.arrow} />
                   )}
-                </div>
-              </div>
-              <div
+                </Box>
+              </Box>
+              <Box
                 className={
                   click1 ? `${styles.refine_option1}` : `${styles.refine_option2}`
                 }
               >
-                <div className={styles.sorting}>
-                  <div>Get Products By Rating</div>
+                <Box className={styles.sorting}>
+                  <Box>Get Products By Rating</Box>
                   <select name="" id="" onChange={sort_func}>
                     <option value="defalt">Rating</option>
                     <option value="three">3</option>
                     <option value="four">4</option>
                     <option value="five">5</option>
                   </select>
-                </div>
-              </div>
+                </Box>
+              </Box>
 
-              <div className={styles.sorting}>
-              <div>Get Products By Sort :</div>
+              <Box className={styles.sorting}>
+              <Box>Get Products By Sort :</Box>
               <select name="" id="" onChange={sort_func}>
                 <option value="defalt">Sort By Price</option>
                 <option value="lowtohigh">Price: Low to High</option>
                 <option value="hightolow">Price: High to Low</option>
                 {/* <option value="a-z">A-Z</option> */}
               </select>
-            </div>
-            </div>
-          </div>
-        </div>
+            </Box>
+            </Box>
+          </Box>
+        </Box>
 
         {/* // else shows products or DATA */}
-        <div style={{margin:'auto'}}>
+        <Box style={{margin:'auto'}}>
 
         {isLoaded ? (
         <Stack padding={4} spacing={1} marginTop={50}
@@ -279,13 +279,13 @@ export const Products = () => {
           <ProductGrid>
             {data?.map((item) => (
               //box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-              // <div style={{ boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px' }} key={item._id}>
+              // <Box style={{ boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px' }} key={item._id}>
               //   <Link to={`/products/${item._id}`}>
               //     <img style={{ marginTop: '20px', alignItems: 'center', height: '100px', width: '130px' }} src={item.image} alt="prof.img" />
               //     <h6>{item.title}</h6>
               //     <h5> Price: {item.price}</h5>
               //   </Link>
-              // </div>
+              // </Box>
               <Link key={item._id} to={`/products/${item._id}`}>
                 <ProductCard key={item._id} product={item} />
               </Link>
@@ -294,7 +294,7 @@ export const Products = () => {
 
 
           <ProductGrid>
-            <div style={{ gap: '30px', margin: 'auto', marginTop: '50px' }}>
+            <Box style={{ gap: '30px', margin: 'auto', marginTop: '50px' }}>
 
               {/* <Tooltip label={page === 1}> */}
                 {/* <Button disabled>Submit</Button> */}
@@ -303,7 +303,7 @@ export const Products = () => {
               {/* </Tooltip> */}
               <Button style={{ margin: 'auto' }}>{page}</Button>
               <Button style={{ marginLeft: '20px' }} onClick={() =>{setPage(prev => prev+ 1)}}>NEXT</Button>
-            </div>
+            </Box>
 
 
 
@@ -322,9 +322,9 @@ export const Products = () => {
 
       )}
         
-        </div>
-      </div>
+        </Box>
+      </Box>
       {/* )} */}
-    </div>
+    </Box>
   )
 };
