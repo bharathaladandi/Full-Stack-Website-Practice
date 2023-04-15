@@ -16,7 +16,7 @@ import { YourDailyStaples } from '../Pages/HomePages/YourDailyStaples'
 
 export const Homepage = () => {
   return (
-    <div  style={{ width: "80%", margin: "auto" }}>
+    <Box  style={{ width: "80%", margin: "auto" }}>
     <br />
     <br />
     {/* <Navbar /> */}
@@ -58,6 +58,6 @@ export const Homepage = () => {
     <br /> <br />
     <Read />
     <br /> <br />
-  </div>
+  </Box>
   )
 }
