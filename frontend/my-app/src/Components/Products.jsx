@@ -307,7 +307,7 @@ export const Products = () => {
 
 
 
-<Container padding="20px" minW={"100%"}>
+{/* <Container padding="20px" minW={"100%"}>
             <Center>
            <HStack gap="20px">
            <Button disabled={page==1} onClick={()=>{setPage(prev=>prev-1)}} >Prev</Button>
@@ -316,7 +316,7 @@ export const Products = () => {
            </HStack>
 
             </Center>
-        </Container>
+        </Container> */}
           </ProductGrid>
         </Box>
 
