@@ -126,7 +126,7 @@ export const Cart = () => {
 
     // </div>
 
-    <div style={{ marginTop: '50px' }}>
+    <Box style={{ marginTop: '50px' }}>
       <Box
         maxW={{
           base: '3xl',
@@ -189,6 +189,6 @@ export const Cart = () => {
           </Flex>
         </Stack>
       </Box>
-    </div>
+    </Box>
   )
 }
