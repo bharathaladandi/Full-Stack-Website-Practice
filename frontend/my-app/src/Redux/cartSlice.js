@@ -1,13 +1,14 @@
-const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 import axios from "axios";
 
+const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
+
 export const cartproductsFetch = createAsyncThunk(
-    'cart/cartproductsFetch', 
+    "cart/cartproductsFetch", 
     async () => {
     const response = await axios.get("https://blossombackend.onrender.com/products/Sale")
-    return response?.data
+    return response?.data;
     }
-) 
+); 
 
 
 const cartSlice = createSlice({
@@ -34,10 +35,11 @@ const cartSlice = createSlice({
 
             state.status = "pending" 
         },
+
         [cartproductsFetch.fulfilled] : (state, action) => {
 
             state.status = "success" 
-            state.item = action.payload
+            state.push(action.payload);
         },
         [cartproductsFetch.rejected] : (state, action) => {
 
