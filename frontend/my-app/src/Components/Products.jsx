@@ -59,7 +59,7 @@ export const Products = () => {
   // useEffect(() => {
   //   setIsLoaded(true);
 
-  //   getData(`https://blossombackend.onrender.com/products/Sale/asc?page=${page}&limit=${limit}`).then((res) => {
+  //   getData(`https://blossombackend.onrender.com/products/Hair/asc?page=${page}&limit=${limit}`).then((res) => {
 
   //     // console.log(res);
   //     setData(res);
@@ -97,36 +97,36 @@ export const Products = () => {
 
   const getData = () => {
     if (sort_x === "lowtohigh") {
-      return axios.get(`https://blossombackend.onrender.com/products/Sale/asc?page=${page}`);
+      return axios.get(`https://blossombackend.onrender.com/products/Hair/asc?page=${page}`);
     } else if (sort_x === "hightolow") {
       return axios.get(
-        `https://blossombackend.onrender.com/products/Sale/desc?page=${page}`
+        `https://blossombackend.onrender.com/products/Hair/desc?page=${page}`
       );
     } else if (sort_x === "ot") {
-      return axios.get(`https://blossombackend.onrender.com/products/Sale/ot?page=${page}`);
+      return axios.get(`https://blossombackend.onrender.com/products/Hair/ot?page=${page}`);
     } else if (sort_x === "et") {
-      return axios.get(`https://blossombackend.onrender.com/products/Sale/et?page=${page}`);
+      return axios.get(`https://blossombackend.onrender.com/products/Hair/et?page=${page}`);
     } else if (sort_x === "tt") {
-      return axios.get(`https://blossombackend.onrender.com/products/Sale/tt?page=${page}`);
+      return axios.get(`https://blossombackend.onrender.com/products/Hair/tt?page=${page}`);
     } else if (sort_x === "ff") {
-      return axios.get(`https://blossombackend.onrender.com/products/Sale/ff?page=${page}`);
+      return axios.get(`https://blossombackend.onrender.com/products/Hair/ff?page=${page}`);
     } else if (sort_x === "af") {
-      return axios.get(`https://blossombackend.onrender.com/products/Sale/af?page=${page}`);
+      return axios.get(`https://blossombackend.onrender.com/products/Hair/af?page=${page}`);
     } else if (sort_x === "three") {
       return axios.get(
-        `https://blossombackend.onrender.com/products/Sale/three?page=${page}`
+        `https://blossombackend.onrender.com/products/Hair/three?page=${page}`
       );
     } else if (sort_x === "four") {
       return axios.get(
-        `https://blossombackend.onrender.com/products/Sale/four?page=${page}`
+        `https://blossombackend.onrender.com/products/Hair/four?page=${page}`
       );
     } else if (sort_x === "five") {
       return axios.get(
-        `https://blossombackend.onrender.com/products/Sale/five?page=${page}`
+        `https://blossombackend.onrender.com/products/Hair/five?page=${page}`
       );
     } else {
       return axios.get(
-        `https://blossombackend.onrender.com/products/Sale?page=${page}`
+        `https://blossombackend.onrender.com/products/Hair?page=${page}`
       );
     }
   };
@@ -140,7 +140,7 @@ export const Products = () => {
     <Box key={Date.now()} >
 
       {/* If lodding is true then show loding indicator  */}
-      {/* {isLoaded ? (
+      {isLoaded ? (
         <Stack padding={4} spacing={1} marginTop={50}
         marginBottom={250} alignItems={'center'}
           justifyContent={'center'}
@@ -157,7 +157,7 @@ export const Products = () => {
             marginTop={100}
           />
         </Stack>
-      ) : ( */}
+      ) : (
       <Box style={{ display: 'flex', marginTop: '50px'}}>
 
 
