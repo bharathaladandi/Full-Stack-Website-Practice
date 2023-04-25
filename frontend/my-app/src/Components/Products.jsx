@@ -140,7 +140,7 @@ export const Products = () => {
     <Box key={Date.now()} >
 
       {/* If lodding is true then show loding indicator  */}
-      {isLoaded ? (
+      {/* {isLoaded ? (
         <Stack padding={4} spacing={1} marginTop={50}
         marginBottom={250} alignItems={'center'}
           justifyContent={'center'}
@@ -157,7 +157,7 @@ export const Products = () => {
             marginTop={100}
           />
         </Stack>
-      ) : (
+      ) : ( */}
       <Box style={{ display: 'flex', marginTop: '50px'}}>
 
 
