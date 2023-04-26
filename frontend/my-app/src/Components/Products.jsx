@@ -59,7 +59,7 @@ export const Products = () => {
   // useEffect(() => {
   //   setIsLoaded(true);
 
-  //   getData(`https://blossombackend.onrender.com/products/Hair/asc?page=${page}&limit=${limit}`).then((res) => {
+  //   getData(`https://blossombackend.onrender.com/products/Holiday/asc?page=${page}&limit=${limit}`).then((res) => {
 
   //     // console.log(res);
   //     setData(res);
@@ -97,36 +97,36 @@ export const Products = () => {
 
   const getData = () => {
     if (sort_x === "lowtohigh") {
-      return axios.get(`https://blossombackend.onrender.com/products/Hair/asc?page=${page}`);
+      return axios.get(`https://blossombackend.onrender.com/products/Holiday/asc?page=${page}`);
     } else if (sort_x === "hightolow") {
       return axios.get(
-        `https://blossombackend.onrender.com/products/Hair/desc?page=${page}`
+        `https://blossombackend.onrender.com/products/Holiday/desc?page=${page}`
       );
     } else if (sort_x === "ot") {
-      return axios.get(`https://blossombackend.onrender.com/products/Hair/ot?page=${page}`);
+      return axios.get(`https://blossombackend.onrender.com/products/Holiday/ot?page=${page}`);
     } else if (sort_x === "et") {
-      return axios.get(`https://blossombackend.onrender.com/products/Hair/et?page=${page}`);
+      return axios.get(`https://blossombackend.onrender.com/products/Holiday/et?page=${page}`);
     } else if (sort_x === "tt") {
-      return axios.get(`https://blossombackend.onrender.com/products/Hair/tt?page=${page}`);
+      return axios.get(`https://blossombackend.onrender.com/products/Holiday/tt?page=${page}`);
     } else if (sort_x === "ff") {
-      return axios.get(`https://blossombackend.onrender.com/products/Hair/ff?page=${page}`);
+      return axios.get(`https://blossombackend.onrender.com/products/Holiday/ff?page=${page}`);
     } else if (sort_x === "af") {
-      return axios.get(`https://blossombackend.onrender.com/products/Hair/af?page=${page}`);
+      return axios.get(`https://blossombackend.onrender.com/products/Holiday/af?page=${page}`);
     } else if (sort_x === "three") {
       return axios.get(
-        `https://blossombackend.onrender.com/products/Hair/three?page=${page}`
+        `https://blossombackend.onrender.com/products/Holiday/three?page=${page}`
       );
     } else if (sort_x === "four") {
       return axios.get(
-        `https://blossombackend.onrender.com/products/Hair/four?page=${page}`
+        `https://blossombackend.onrender.com/products/Holiday/four?page=${page}`
       );
     } else if (sort_x === "five") {
       return axios.get(
-        `https://blossombackend.onrender.com/products/Hair/five?page=${page}`
+        `https://blossombackend.onrender.com/products/Holiday/five?page=${page}`
       );
     } else {
       return axios.get(
-        `https://blossombackend.onrender.com/products/Hair?page=${page}`
+        `https://blossombackend.onrender.com/products/Holiday?page=${page}`
       );
     }
   };
