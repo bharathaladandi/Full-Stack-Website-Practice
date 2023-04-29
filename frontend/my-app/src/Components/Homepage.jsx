@@ -19,6 +19,7 @@ import { useGetAllProductsQuery } from '../Redux/productapi'
 export const Homepage = () => {
 
   const { data, error, isLoading } = useGetAllProductsQuery()
+  
   return (
     <Box  style={{ width: "80%", margin: "auto" }}>
     <br />
