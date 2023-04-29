@@ -14,8 +14,11 @@ import { SnacksStore } from '../Pages/HomePages/SnacksStore'
 import { TopOffers } from '../Pages/HomePages/TopOffers'
 import { YourDailyStaples } from '../Pages/HomePages/YourDailyStaples'
 import { Box } from '@chakra-ui/react'
+import { useGetAllProductsQuery } from '../Redux/productapi'
 
 export const Homepage = () => {
+
+  const { data, error, isLoading } = useGetAllProductsQuery()
   return (
     <Box  style={{ width: "80%", margin: "auto" }}>
     <br />
