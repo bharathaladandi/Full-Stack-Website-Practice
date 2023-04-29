@@ -30,7 +30,7 @@ export const SingleProduct = () => {
 
         setIsLoaded(true)
         // loading is start 
-        getData(`https://blossombackend.onrender.com/products/Sale/${product_id}/spec`).then((res) => {
+        getData(`https://blossombackend.onrender.com/products/SelfCare/${product_id}/spec`).then((res) => {
 
             console.log(res[0])
             setProductDetails(res[0])
