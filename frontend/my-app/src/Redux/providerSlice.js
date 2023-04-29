@@ -4,16 +4,23 @@ import axios from "axios";
 
 const initialState = {
     items:[], 
-    status:null
+    status:null,
+    error: null,
 };
 
 
 export const productsFetch = createAsyncThunk(
     "products/productsFetch",
     
-    async () => {
-     const responce =   await axios.get(`https://blossombackend.onrender.com/products/SelfCare`)
-     return responce?.data
+    async (id=null, { rejectWithValue }) => {
+        try{
+            const responce =   await axios.get(`https://blossombackend.onrender.com/products/SelfCare`)
+            return responce?.data
+        }
+        catch(error){
+            return rejectWithValue("an error occured");
+        }
+  
     }
     )
 const productsSlice = createSlice({
@@ -29,7 +36,8 @@ const productsSlice = createSlice({
             state.items = action.payload
         },
         [productsFetch.rejected] : (state, action) => {
-            state.status = "rejected"
+            state.status = "rejected";
+            state.error = action.payload;
         }
     }
 });
