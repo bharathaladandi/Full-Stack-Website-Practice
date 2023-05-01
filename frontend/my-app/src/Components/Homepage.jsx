@@ -19,7 +19,7 @@ import { useGetAllProductsQuery } from '../Redux/productapi'
 export const Homepage = () => {
 
   const { data, error, isLoading } = useGetAllProductsQuery()
-  
+
   return (
     <Box  style={{ width: "80%", margin: "auto" }}>
     <br />
@@ -31,7 +31,8 @@ export const Homepage = () => {
     <br />
     <br />
     <Menus />
-    <br /> <br />
+    <br />
+    <br />
     <BankOffers />
     <br />
     <br />
@@ -60,9 +61,11 @@ export const Homepage = () => {
     <br />
     <br />
     <BrandStore />
-    <br /> <br />
+    <br /> 
+    <br />
     <Read />
-    <br /> <br />
-  </Box>
+    <br /> 
+    <br />
+    </Box>
   )
 }
